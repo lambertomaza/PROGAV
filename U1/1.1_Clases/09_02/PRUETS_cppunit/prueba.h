@@ -1,4 +1,3 @@
-//prueba.h
 #ifndef TEST_CALENDARIO
 #define TEST_CALENDARIO
 //#include <cppunit/extensions/HelperMacros.h>
@@ -13,6 +12,7 @@
 #include "Calendario.h"
 
 using namespace std;
+//string archivo="1 Resultados_secciones.csv";
 
 class TestCalendario : public CppUnit::TestFixture {
 private:
@@ -30,7 +30,6 @@ protected: /*estas son las pruebas*/
   void testCreacionDeUnCalendario();
   void test_Calendario_index_delmes();
   void test_primera_fecha_delmes();
-  void test_fill_SDIT();
 };//end class TestCalendario
 
 #endif /*TEST_CALENDARIO*/

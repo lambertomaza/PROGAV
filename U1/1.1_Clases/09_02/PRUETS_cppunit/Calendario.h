@@ -1,26 +1,11 @@
-//Calendario.h
 #ifndef CALENDARIO_H
 #define CALENDARIO_H
 
-typedef
-struct SetDIntType{
+struct SetDInt{
   int n;
   int *intPt;
-  SetDIntType():n(0),intPt(NULL){ }
-  bool operator==(SetDIntType &sdit)const{
-    bool tmp0=true;
-    //bool tmp1=(n==sdit.n)?true:false;
-    bool tmp1=(n==sdit.n);
-    for(int i=0;i<n;i++){
-      if(*(intPt+i)!=*(sdit.intPt+i)){
-        tmp0=false;
-        break;
-      }
-    }
-    return (tmp0 && tmp1);
-  }
-}SetDIntType;
-//typedef struct SetDInt SetDIntType;
+};
+typedef struct SetDInt SetDIntType;
 
 
 class Calendario{

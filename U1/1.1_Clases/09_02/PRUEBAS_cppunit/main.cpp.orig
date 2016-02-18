@@ -72,7 +72,7 @@ SetDIntType* obtener_nums_ddia(string d,string m){
 }
 
 string MES[]={"enero","febrero","marzo","abril","mayo","junio","julio","agosto",
-              "septiembre","octubre","noviembre","diciembre"};
+              "septiembre","noviembre","diciembre"};
 
 /**
  Obtiene el indice correspondiente al mes month. 

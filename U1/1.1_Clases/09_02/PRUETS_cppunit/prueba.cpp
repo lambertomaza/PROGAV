@@ -1,14 +1,11 @@
-//prueba.cpp
 #include <iostream>
 using std::string;
 //#include <cppunit/TestFixture.h>
 //#include <cppunit/TestAssert.h>
 //#include <cppunit/TestCaller.h>
 #include <cppunit/TestSuite.h>  /*CppUnit*/
-#include <stdlib.h>/*malloc()*/
 #include "prueba.h"
 extern string ARREGLO[][7];
-extern int TamDMes[];
 
 CppUnit::Test* TestCalendario::suite(){
   CppUnit::TestSuite *suiteOfTests=new CppUnit::TestSuite("Prueba de Calendario");
@@ -17,15 +14,11 @@ CppUnit::Test* TestCalendario::suite(){
 
   suiteOfTests->addTest(new CppUnit::TestCaller<TestCalendario>
     ("Test 2 - Determinar si el metodo Calendario::index_delmes(string) \
-funciona bien.",&TestCalendario::test_Calendario_index_delmes));
+      funciona bien.",&TestCalendario::test_Calendario_index_delmes));
 
   suiteOfTests->addTest(new CppUnit::TestCaller<TestCalendario>("Test 3 - Determinar \
-si el metodo Calendario::primera_fecha_delmes(string,int) funciona bien.",
-&TestCalendario::test_primera_fecha_delmes));
-
-  suiteOfTests->addTest(new CppUnit::TestCaller<TestCalendario>("Test 4 - Determinar \
-si el metodo Calendario::fill_SDIT(int i,int j,SetDIntType* r) funciona bien.",
-&TestCalendario::test_fill_SDIT));
+      si el metodo Calendario::primera_fecha_delmes(string,int) funciona bien.",
+      &TestCalendario::test_primera_fecha_delmes));
 
   /* Aqui se pueden agregar mas tests */
   return suiteOfTests;
@@ -70,11 +63,12 @@ int primera_fecha_delmes(string day,int i){
   return -1;/*nunca deberia llegarse aqui*/
 }
 string DIA[]={"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"};
-
+//string MES[]={"enero","febrero","marzo","abril","mayo","junio","julio","agosto",
+//"septiembre","octubre","noviembre","diciembre"};
 void TestCalendario::test_primera_fecha_delmes(){
   int i,j;
   Calendario *calPt=new Calendario(2016);
-  //Ahora probamos 7*12 combinaciones posibles de dias de la semana y mes.
+  //Ahora probamos 7*12=84 combinaciones posibles de dias de la semana y mes.
   //P.ej. ("Domingo",0),("Domingo",1),...,("Lunes",0),("Lunes",1),..., etc.
   for(i=0;i<7;i++){
     for(j=0;j<12;j++){
@@ -83,38 +77,4 @@ void TestCalendario::test_primera_fecha_delmes(){
   }
 }
 
-void fill_SDIT(int i,int j,SetDIntType* r){
-  int cnt=1,k=j;
-  while((k=k+7)<=TamDMes[i])cnt++;
-  r->n=cnt;
-  k=j;
-  r->intPt=(int*)malloc((r->n)*sizeof(int));
-  for(int m=0;m<r->n;m++){
-    *(r->intPt+m)=k;
-    k+=7;
-  }
-}
 
-void TestCalendario::test_fill_SDIT(){
-  Calendario *calPt=new Calendario(2016);
-//  SetDIntType R,R1;
-  SetDIntType* r=(SetDIntType*)malloc(sizeof(SetDIntType));
-  SetDIntType* r1=(SetDIntType*)malloc(sizeof(SetDIntType));
-//  SetDIntType* r=&R;
-//  SetDIntType* r1=&R1;
-  int i,j1,j2,k;
-  string d;
-  for(i=0;i<12;i++){
-    for(k=0;k<7;k++){
-      d=DIA[k];
-      j1=primera_fecha_delmes(d,i);j2=calPt->primera_fecha_delmes(d,i);
-      fill_SDIT(i,j1,r); calPt->fill_SDIT(i,j2,r1);
-//      CPPUNIT_ASSERT(R==R1);
-      CPPUNIT_ASSERT(*r==*r1);
-    }
-  }
-
-//  j=primera_fecha_delmes("Domingo",0);
-//  fill_SDIT(0,j,&R);calPt->fill_SDIT(0,j,&R1);
-//  CPPUNIT_ASSERT(R==R1);
-}

@@ -1,4 +1,3 @@
-//hacer_pruebas.cpp
 //#include <cppunit/CompilerOutputter.h>
 //#include <cppunit/extensions/TestFactoryRegistry.h>
 #include <iostream>
@@ -6,6 +5,7 @@ using std::string;
 #include <cppunit/TestSuite.h>
 #include <cppunit/ui/text/TestRunner.h>
 
+//#include "modelo.h"
 #include "Calendario.h"
 #include "prueba.h"
 

@@ -13,6 +13,7 @@ int main(int argc, char** argv) {
 	Cal2016->mostrar_fechas("Lunes","enero");
 	cout<<"Los miercoles del mes de febrero son:"<<endl;
 	Cal2016->mostrar_fechas("Miercoles","febrero");
+  
 #ifdef _WIN32
 	system("PAUSE");
 #endif

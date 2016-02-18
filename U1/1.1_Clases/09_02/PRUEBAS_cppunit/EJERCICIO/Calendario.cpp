@@ -15,3 +15,13 @@ void Calendario::print_SetDIntYFecha(string d,string m,SetDIntType* SDI){
   }
 }
 
+SetDIntType* Calendario::obtener_nums_ddia(string d,string m){
+  SetDIntType* r=(SetDIntType*)malloc(sizeof(SetDIntType));
+  int i,j;  /* i: index del mes en el arreglo ARREGLO*/
+  i=index_delmes(m);
+  if(i>=0 && i<12){
+    j=primera_fecha_delmes(d,i);
+  }
+  fill_SDIT(i,j,r);
+  return r;
+}
