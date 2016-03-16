@@ -1,14 +1,15 @@
 //prueba.cpp
 #include <iostream>
+#include <stdlib.h>
 using std::string;
 //#include <cppunit/TestFixture.h>
 //#include <cppunit/TestAssert.h>
 //#include <cppunit/TestCaller.h>
 #include <cppunit/TestSuite.h>  /*CppUnit*/
 #include <stdlib.h>/*malloc()*/
+#define MAIN_MODULE_PRUEBA	1
 #include "prueba.h"
-extern string ARREGLO[][7];
-extern int TamDMes[];
+
 
 CppUnit::Test* TestCalendario::suite(){
   CppUnit::TestSuite *suiteOfTests=new CppUnit::TestSuite("Prueba de Calendario");
@@ -39,8 +40,6 @@ void TestCalendario::testCreacionDeUnCalendario(){
   CPPUNIT_ASSERT_EQUAL(Cal2016.get_anio(), year);
 }
 
-//struct protoCalendario{
-//};
 
 void TestCalendario::test_Calendario_index_delmes(){
   Calendario *calPt;
@@ -85,6 +84,21 @@ void TestCalendario::test_primera_fecha_delmes(){
 
 void fill_SDIT(int i,int j,SetDIntType* r){
   int cnt=1,k=j;
+dummy[0]=0;dummy[1]=1;
+/*Cantidades de dias de los meses del anio (valido para anios bisiestos)*/
+  TamDMes=(int*)malloc(12*sizeof(int));
+  *TamDMes=31;/*enero*/
+  *(TamDMes+1)=29;/*febrero*/
+  *(TamDMes+2)=31;/*marzo*/
+  *(TamDMes+3)=30;/*abril*/
+  *(TamDMes+4)=31;/*mayo*/
+  *(TamDMes+5)=30;/*junio*/
+  *(TamDMes+6)=31;/*julio*/
+  *(TamDMes+7)=31;/*agosto*/
+  *(TamDMes+8)=30;/*septiembre*/
+  *(TamDMes+9)=31;/*octubre*/
+  *(TamDMes+10)=30;/*noviembre*/
+  *(TamDMes+11)=31;/*diciembre*/
   while((k=k+7)<=TamDMes[i])cnt++;
   r->n=cnt;
   k=j;
@@ -114,7 +128,27 @@ void TestCalendario::test_fill_SDIT(){
     }
   }
 
-//  j=primera_fecha_delmes("Domingo",0);
-//  fill_SDIT(0,j,&R);calPt->fill_SDIT(0,j,&R1);
-//  CPPUNIT_ASSERT(R==R1);
 }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//

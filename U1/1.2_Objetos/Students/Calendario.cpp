@@ -1,22 +1,15 @@
 #include <iostream>
+#include <vector>
+#include <stdlib.h> /*malloc()*/
 using std::string;
 using std::cout;
 using std::endl;
+using std::vector;
 #include "Calendario.h"
-string ARREGLO[][7]={
-  {"Jueves","Viernes","Sabado","Domingo","Lunes","Martes","Miercoles"}, /*enero*/
-  {"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"}, /*febrero*/
-  {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"}, /*marzo*/
-  {"Jueves","Viernes","Sabado","Domingo","Lunes","Martes","Miercoles"}, /*abril*/
-  {"Sabado","Domingo","Lunes","Martes","Miercoles","Jueves","Viernes"}, /*mayo*/
-  {"Martes","Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes"}, /*junio*/
-  {"Jueves","Viernes","Sabado","Domingo","Lunes","Martes","Miercoles"}, /*julio*/
-  {"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"}, /*agosto*/
-  {"Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes","Martes"}, /*septiembre*/
-  {"Viernes","Sabado","Domingo","Lunes","Martes","Miercoles","Jueves"}, /*octubre*/
-  {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"}, /*noviembre*/
-  {"Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes","Martes"}  /*diciembre*/
-};
+#include "Fecha.h"
+#include "Dia.h"
+#include "Actividad.h"
+#include "Asignacion.h"
 
 void Calendario::mostrar_fechas(string d,string m){
   SetDIntType* sdi=obtener_nums_ddia(d,m);
@@ -85,4 +78,52 @@ SetDIntType* Calendario::obtener_nums_ddia(string d, string m){
  }
  r->n=cnt-1;
 }                                         
-                                        
+
+bool Calendario::esta_incluido(string d,vector<string> dias){
+  bool ret=false;
+  for(int i=0;i<dias.size();i++){
+    if(d==dias[i]){
+      ret=true;
+      break;
+    }
+  }
+  return ret;
+}
+
+bool Calendario::esta_incluido(Fecha* fPt,vector<Dia*> dnl){
+  bool ret=false;
+  for(int i=0;i<dnl.size();i++){
+    if(*(dnl[i]->f)==*fPt){
+      ret=true;
+      break;
+    }
+  }
+  return ret;
+}
+
+/**
+ devuelve la cantidad de fechas entre fi y ff que corresponden a los 
+ dias en el vector dias.
+ */                                       
+int Calendario::cant_dFechas(Fecha *fi,Fecha *ff,vector<string> dias){
+  int im=fi->m,id=fi->d,cnt=0;
+  /*cantidades de dias de los meses (2016)*/
+  int TamM[]={31,29,31,30,31,30,31,31,30,31,30,31};
+inic:
+  if((im!=ff->m)||(id!=ff->d)){
+    if(esta_incluido(ARREGLO[im][id%7],dias)){
+      cnt++;
+    }
+    if((id+1)<=TamM[im]){
+      id++;
+    }else{
+      id=1;im++;
+    }
+    goto inic;
+  }
+  if(esta_incluido(ARREGLO[ff->m][ff->d%7],dias)){
+    cnt++;
+  }
+  return cnt;
+}
+

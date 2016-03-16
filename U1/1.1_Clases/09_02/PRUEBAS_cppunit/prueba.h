@@ -9,7 +9,6 @@
 #include <cppunit/TestSuite.h>
 #include <cppunit/TestCase.h>
 #include <fstream>
-
 #include "Calendario.h"
 
 using namespace std;

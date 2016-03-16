@@ -8,9 +8,10 @@
 #define EXTERN	extern
 #endif /*MAIN_MODULE_PRUEBA*/
 
-extern string ARREGLO[][7];
-EXTERN int *TamDMes;
-EXTERN int dummy[2];
+#ifndef MAIN_MODULE_PRUEBA
+EXTERN string ARREGLO[][7];
+EXTERN int TamDMes[];
+#endif
 
 typedef
 struct SetDIntType{
@@ -19,7 +20,6 @@ struct SetDIntType{
   SetDIntType():n(0),intPt(NULL){ }
   bool operator==(SetDIntType &sdit)const{
     bool tmp0=true;
-    //bool tmp1=(n==sdit.n)?true:false;
     bool tmp1=(n==sdit.n);
     for(int i=0;i<n;i++){
       if(*(intPt+i)!=*(sdit.intPt+i)){
@@ -33,6 +33,10 @@ struct SetDIntType{
 //typedef struct SetDInt SetDIntType;
 
 
+struct Fecha;
+class Dia;
+class Actividad;
+class Alumno;
 class Calendario{
 public:
   void mostrar_fechas(string dia,string mes);
@@ -82,6 +86,33 @@ public:
  */
   void fill_SDIT(int i,int j,SetDIntType* r);
 
+  bool esta_incluido(string d,vector<string> dias);/*sobrecarga de metodos */
+  bool esta_incluido(Fecha*,vector<Dia*>);
+  /**
+   Calcula la cantidad de dias desde la fecha inicial fi 
+   hasta la fecha final ff.
+   @pre: ff debe ser posterior a fi.
+  */
+  int cant_dFechas(Fecha *fi,Fecha *ff,vector<string> dias);
+
+  /**
+   Obtiene un vector de Fechas en el periodo con los dias 
+   de la semana indicado en el vector dias.
+  */
+  vector<Fecha*> get_Fechas(Fecha *fi,Fecha *ff,vector<string> dias);
+  /**
+   Obtiene un vector con los Dias de Clase. Con este vector se procedera
+   a colocar los temas del curso.
+  */
+  vector<Dia*> get_Dias_DC(vector<Fecha*> vdf,vector<Dia*> dnl);
+
+  /**
+   Antes de usar este metodo se debe usar get_Dias_DC y se debe 
+   usar ObjetoDia.set_TDT(#).
+  */
+  void planear(vector<Dia*> vddc,vector<Actividad*> act);
+  void planear(vector<Dia*> DIA,vector<Actividad*> ACT,vector<Alumno*> Alum);
+
   int numdanio;  //numero de anio
 };//end class Calendario
-#endif
+#endif /*CALENDARIO_H*/
