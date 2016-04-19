@@ -10,6 +10,8 @@ using std::vector;
 #include "Fecha.h"
 #include "Dia.h"
 #include "Actividad.h"
+#include "Alumno.h"
+extern string NombresDA[][2];
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 int anio=2016;
 
@@ -36,24 +38,22 @@ void print_SetDIntYFecha(string d,string m,SetDIntType* SDI);
 int index_delmes(string month);
 int primera_fecha_delmes(string day,int i);
 void fill_SDIT(int i,int j,SetDIntType* r);
+void suma_de_horas(vector<Actividad*>);
+void alumno_init(vector<Alumno*>& alumno);
+void print_alumnos(vector<Alumno*>);
 
 int main(int argc, char** argv) {
+  vector<Alumno*> Alum;
+  alumno_init(Alum);
+  print_alumnos(Alum);
+  
   Calendario *Cal2016=new Calendario(2016);
-//  cout<<"Los lunes del mes de enero son:"<<endl;
-//  Cal2016->mostrar_fechas("Lunes","enero");
-//  cout<<"Los miercoles del mes de febrero son:"<<endl;
-//  Cal2016->mostrar_fechas("Miercoles","febrero");
   Fecha f1(4,1); /*4 de febrero*/
-  Fecha f2(30,5);/*30 de junio*/
-  Fecha f3(30,3);/*30 de abril*/
-  Fecha f4(1,8);/*1 de sept*/
-  Fecha f5(30,8);/*30 de sept*/
+  Fecha f2(3,5);/*3 de junio*/
 
   vector<string> vdd;         /*vector de dias*/
   vdd.push_back("Martes");    /*los dias que hay clase*/
   vdd.push_back("Jueves");
-//  cout<<"Cantidad de Martes y Jueves del 1 de marzo al 30 de junio"
-//      <<Cal2016->cant_dFechas(&f1,&f2,vdd)<<endl;
   vector<Fecha*> VDF=Cal2016->get_Fechas(&f1,&f2,vdd); /*vector con las Fechas 
                                                          entre f1 y f2 
                                                          correspondientes a 
@@ -73,7 +73,6 @@ int main(int argc, char** argv) {
     pasando un mensaje al objeto de clase Calendario*/
   vector<Dia*> VDDC=Cal2016->get_Dias_DC(VDF,vdnl);  /*obtener Vector De Dias de Clase*/
                                                      /*de clase en el salon de clase*/
-
   /*Se asigna Tiempo Disponible Total segun el dia de que se trate*/
   for(int i=0;i<VDDC.size();i++){
     if(ARREGLO[VDDC[i]->f->m][VDDC[i]->f->d%7]=="Martes")
@@ -81,42 +80,47 @@ int main(int argc, char** argv) {
     if(ARREGLO[VDDC[i]->f->m][VDDC[i]->f->d%7]=="Jueves")
       VDDC[i]->set_TDT(1.5);
   }
-
   /*Se necesita crear las actividades/temas a asignar en los 
     dias de clase disponibles. Se usa usa constructor de Actividad 
     pasando el nombre del Tema y la duracion del Tema/Actividad en horas.*/
   vector<Actividad*> VDA;
-  VDA.push_back(new Actividad("UNIDAD 1 Clases",0.0));
-  VDA.push_back(new Actividad("1.1 Clases",2.5));
+  VDA.push_back(new Actividad("Unidad 1 Programacion Orientada a Objetos",0.0));
+  VDA.push_back(new Actividad("1.1 Clases",2.0));
   VDA.push_back(new Actividad("1.2 Objetos",1.5));
   VDA.push_back(new Actividad("1.3 Herencia",1.0));
   VDA.push_back(new Actividad("1.4 Polimorfismo",1.0));
-  VDA.push_back(new Actividad("1.5 Abstraccion",1.0));
-  VDA.push_back(new Actividad("UNIDAD 2 Entorno de Desarrollo",0.0));
-  VDA.push_back(new Actividad("2.1 Ambiente de proyecto",2.0));
+  VDA.push_back(new Actividad("1.5 Abstraccion",1.5));
+  VDA.push_back(new Actividad("Unidad 2 Entorno de Desarrollo",0.0));
+  VDA.push_back(new Actividad("2.1 Ambiente de desarrollo",2.0));
   VDA.push_back(new Actividad("2.2 Proyecto",6.0));
-  VDA.push_back(new Actividad("UNIDAD 3 Interfaz Grafica de Usuario",0.0));
+  VDA.push_back(new Actividad("Unidad 3 Interfaz Grafica de Usuario",0.0));
   VDA.push_back(new Actividad("3.1 Controles basicos",4.0));
-  VDA.push_back(new Actividad("3.2 Controles avanzados",5.0));
+  VDA.push_back(new Actividad("3.2 Controles Avanzados",5.0));
   VDA.push_back(new Actividad("3.3 Eventos",9.0));
-  VDA.push_back(new Actividad("UNIDAD 4 Puertos y Comunicaciones",0.0));
+  VDA.push_back(new Actividad("Unidad 4 Puertos y Comunicaciones",0.0));
   VDA.push_back(new Actividad("4.1 Puerto serie",4.0));
   VDA.push_back(new Actividad("4.2 Puerto USB",5.0));
-  VDA.push_back(new Actividad("4.3 Comunicacion TCP/IP",6.0));
-  VDA.push_back(new Actividad("UNIDAD 5 Vision",0.0));
-  VDA.push_back(new Actividad("5.1 Vision",4.0));
+  VDA.push_back(new Actividad("4.3 Comunicacion TCP/IP",2.0));
+  VDA.push_back(new Actividad("Unidad 5 Vision",0.0));
+  VDA.push_back(new Actividad("5.1 Vision",6.0));
 
   /*Por ultimo se hace la planeacion pasando el vector de dias de clase y el 
     vector de actividades*/
-  Cal2016->planear(VDDC,VDA);
+  //Cal2016->planear(VDDC,VDA);
+  Cal2016->planear(VDDC,VDA,Alum);
   /*Finalmente se imprime en pantalla los dias a planear con las actividaes 
     correspondientes por dia de clase entre las fechas f1 y f2.*/
   cout<<"Los dias a planificar son:"<<endl;
   for(int i=0;i<VDDC.size();i++){
-//    cout<<ARREGLO[VDDC[i]->f->m][VDDC[i]->f->d%7]<<" "<<VDDC[i]->f->d<<" de "
-//        <<MONTH[VDDC[i]->f->m]<<" de "<<Cal2016->get_anio()<<endl;
     cout<<*VDDC[i]<<endl;
   }
+  suma_de_horas(VDA);
+  Mauricio_Arturo_Aguilera_Roa *Mauricio=new Mauricio_Arturo_Aguilera_Roa(NombresDA[0][0],NombresDA[0][1]);
+  David_Raciel_Arteaga_Martinez *David=new David_Raciel_Arteaga_Martinez(NombresDA[1][0],NombresDA[1][1]);
+  Alumno *al=Mauricio;
+  al->opye();
+  al=David;
+  al->opye();
   
 #ifdef _WIN32
 	system("PAUSE");
@@ -225,4 +229,12 @@ void fill_SDIT(int i,int j,SetDIntType* r){
     *(r->intPt+m)=k;
     k+=7;
   }
+}
+
+void suma_de_horas(vector<Actividad*> vda){
+  float sum=0;
+  for(int i=0;i<vda.size();i++){
+    sum+=vda[i]->TRT;
+  }
+  cout<<"Total de horas="<<sum<<endl;
 }
