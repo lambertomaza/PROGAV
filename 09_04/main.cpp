@@ -9,14 +9,18 @@ using std::endl;
 using std::string;
 using std::vector;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-float ARRTS[][3]={
-  {1,1,1},
-  {2,3,4}
+float ARRTS[][9]={
+  {1,-2,-1,3,-5,0,0,0,0},
+  {0,1,2,2,4,1,0,0,40},
+  {0,2,-1,1,2,0,1,0,8},
+  {0,4,-2,1,-1,0,0,1,10}
 };
 vector<string> elemdmenu;
 
 void initTS(int,int,float**);
-void initTS1(int,int,float**,float arrts[2][3]);
+void initTS1(int,int,float**,float arrts[4][9]);
+void initTS1(int N,int M,float **A,float **arrts);
+void initTS2(int,int,float**);
 void printTS(int n,int m,float **ts);
 void initelemsdmenu(void);
 int mostrarmenu(void);
@@ -24,6 +28,8 @@ void do_mostrartablaorig(TablaS&);
 void do_mostrartabla(TablaS&);
 void do_setcolumnapivote(TablaS&);
 void do_setfilapivote(TablaS&);
+void do_multfilapivoteporescalar(TablaS&);
+void do_gaussjordanparafilanum(TablaS&);
 void processcommands(TablaS&);
 
 int main(int argc, char** argv) {
@@ -37,7 +43,7 @@ int main(int argc, char** argv) {
   cin>>m;
 #endif /*USANDO*/
 #ifdef PROBANDO
-  n=2;m=3;
+  n=4;m=9;
 #endif /*PROBANDO*/
   TS=new float*[n];
   for(int i=0;i<n;i++)
@@ -49,6 +55,9 @@ int main(int argc, char** argv) {
 #ifdef PROBANDO
   initTS1(n,m,TS,ARRTS);
 #endif /*PROBANDO*/
+#ifdef USANDO
+  initTS2(n,m,TS);
+#endif /*USANDO*/
   TablaS TabS(n,m,TS);
   cout<<"Tabla inicial simplex"<<endl;
   cout<<TabS;
@@ -83,7 +92,7 @@ void printTS(int n,int m,float **ts)
 }
 
 void
-initTS1(int N,int M,float **A,float arrts[2][3])
+initTS1(int N,int M,float **A,float arrts[4][9])
 {
   for(int i=0;i<N;i++)
   {
@@ -94,21 +103,56 @@ initTS1(int N,int M,float **A,float arrts[2][3])
   }
 }
 
-/*Modificar esta funcion para agregar elemento de menu*/
+void
+initTS1(int N,int M,float **A,float **arrts)
+{
+  for(int i=0;i<N;i++)
+  {
+    for(int j=0;j<M;j++)
+    {
+      A[i][j]=arrts[i][j];
+    }
+  }
+}
+
+void
+initTS2(int fil,int col,float **m)
+{
+  cout<<"Ingrese los valores de la tabla inicial"<<endl;
+  for(int i=0;i<fil;i++)
+  {
+    for(int j=0;j<col;j++)
+    {
+      cout<<"TS["<<i+1<<"]["<<j+1<<"]=";
+      cin>>m[i][j];
+    }
+  }
+}
+
+/*modificar esta funcion para agregar elemento de menu*/
 void
 initelemsdmenu(void)
 {
-  elemdmenu.push_back("Mostrar tabla inicial simplex");
-  elemdmenu.push_back("Mostrar tabla simplex");
-  elemdmenu.push_back("Settear columna pivote");
-  elemdmenu.push_back("Settear fila pivote");
+  elemdmenu.push_back("mostrar tabla inicial simplex");
+  elemdmenu.push_back("mostrar tabla simplex");
+  elemdmenu.push_back("settear columna pivote");
+  elemdmenu.push_back("settear fila pivote");
+  elemdmenu.push_back("Mutiplicar fila pivote por escalar");
+  elemdmenu.push_back("Operacion Gauss-Jordan para la fila numero:");
 }
 
 void
 processcommands(TablaS& t)
 {
   int ch;    /*choice*/
-  TablaS torig=t;
+  float **TSorig=new float*[t.n];
+  for(int i=0;i<t.n;i++)
+  {
+    TSorig[i]=new float[t.m];
+  }
+  initTS1(t.n,t.m,TSorig,t.ts);
+  TablaS torig(t.n,t.m,TSorig);
+  
   do{
     ch=mostrarmenu();
     if((ch>=0)&&(ch<elemdmenu.size())){
@@ -121,6 +165,8 @@ processcommands(TablaS& t)
       case 1:{do_mostrartabla(t);break;}
       case 2:{do_setcolumnapivote(t);break;}
       case 3:{do_setfilapivote(t);break;}
+      case 4:{do_multfilapivoteporescalar(t);break;}
+      case 5:{do_gaussjordanparafilanum(t);break;}
       default:{break;}
     }
   }while(ch!=elemdmenu.size());

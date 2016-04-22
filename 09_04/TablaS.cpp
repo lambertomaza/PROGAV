@@ -9,7 +9,7 @@ operator<<(ostream& out,TablaS& t)
   {
     for(int j=0;j<t.m;j++)
     {
-      out<<t.ts[i][j]<<" ";
+      out<<t.ts[i][j]<<"\t";
     }
     out<<endl;
   }
