@@ -10,7 +10,7 @@ using std::string;
 using std::vector;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 float ARRTS[][9]={
-  {1,-2,-1,3,-5,0,0,0,0},
+  {1,-3,1,-3,-4,0,0,0,0},
   {0,1,2,2,4,1,0,0,40},
   {0,2,-1,1,2,0,1,0,8},
   {0,4,-2,1,-1,0,0,1,10}
