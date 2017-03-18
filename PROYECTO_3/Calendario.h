@@ -9,7 +9,7 @@
 #endif /*MAIN_MODULE_PRUEBA*/
 
 #ifndef MAIN_MODULE_PRUEBA
-EXTERN string ARREGLO_2016[][7];
+EXTERN string ARREGLO_2017[][7];
 EXTERN int TamDMes[];
 #endif
 

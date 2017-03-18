@@ -7,11 +7,11 @@ using std::vector;
 #include "Fecha.h"
 #include "Dia.h"
 #include "Asignacion.h"
-extern string ARREGLO_2016[][7];
+extern string ARREGLO_2017[][7];
 extern string MONTH[];
 extern int anio;
 ostream& operator<<(ostream& out,Dia& D){
-  out<<ARREGLO_2016[D.f->m][(D.f->d)%7]<<" "<<D.f->d<<" de "
+  out<<ARREGLO_2017[D.f->m][(D.f->d)%7]<<" "<<D.f->d<<" de "
      <<MONTH[D.f->m]<<" de "<<anio<<endl;
   for(int i=0;i<D.A.size();i++){
     out<<*(D.A[i])<<endl;

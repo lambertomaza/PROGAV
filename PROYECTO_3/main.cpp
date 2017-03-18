@@ -13,21 +13,21 @@ using std::vector;
 #include "Alumno.h"
 extern string NombresDA[][2];
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-int anio=2016;
+int anio=2017;
 
-string ARREGLO_2016[][7]={
-  {"Jueves","Viernes","Sabado","Domingo","Lunes","Martes","Miercoles"}, /*enero*/
-  {"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"}, /*febrero*/
-  {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"}, /*marzo*/
-  {"Jueves","Viernes","Sabado","Domingo","Lunes","Martes","Miercoles"}, /*abril*/
-  {"Sabado","Domingo","Lunes","Martes","Miercoles","Jueves","Viernes"}, /*mayo*/
-  {"Martes","Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes"}, /*junio*/
-  {"Jueves","Viernes","Sabado","Domingo","Lunes","Martes","Miercoles"}, /*julio*/
-  {"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"}, /*agosto*/
-  {"Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes","Martes"}, /*septiembre*/
-  {"Viernes","Sabado","Domingo","Lunes","Martes","Miercoles","Jueves"}, /*octubre*/
-  {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"}, /*noviembre*/
-  {"Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes","Martes"}  /*diciembre*/
+string ARREGLO_2017[][7]={
+  {"Sabado","Domingo","Lunes","Martes","Miercoles","Jueves","Viernes"}, /*enero*/
+  {"Martes","Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes"}, /*febrero*/
+  {"Martes","Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes"}, /*marzo*/
+  {"Viernes","Sabado","Domingo","Lunes","Martes","Miercoles","Jueves"}, /*abril*/
+  {"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"}, /*mayo*/
+  {"Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes","Martes"}, /*junio*/
+  {"Viernes","Sabado","Domingo","Lunes","Martes","Miercoles","Jueves"}, /*julio*/
+  {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"}, /*agosto*/
+  {"Jueves","Viernes","Sabado","Domingo","Lunes","Martes","Miercoles"}, /*septiembre*/
+  {"Sabado","Domingo","Lunes","Martes","Miercoles","Jueves","Viernes"}, /*octubre*/
+  {"Martes","Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes"}, /*noviembre*/
+  {"Jueves","Viernes","Sabado","Domingo","Lunes","Martes","Miercoles"}  /*diciembre*/
 };
 
 string MONTH[]={"enero","febrero","marzo","abril","mayo","junio","julio","agosto",
@@ -47,14 +47,14 @@ int main(int argc, char** argv) {
   alumno_init(Alum);
   print_alumnos(Alum);
   
-  Calendario *Cal2016=new Calendario(2016);
+  Calendario *Cal2017=new Calendario(anio);
   Fecha f1(1,2); /*Martes 1 de marzo*/
   Fecha f2(9,5);/*Jueves 9 de junio*/
 
   vector<string> vdd;         /*vector de dias*/
   vdd.push_back("Martes");    /*los dias que hay clase*/
   vdd.push_back("Jueves");
-  vector<Fecha*> VDF=Cal2016->get_Fechas(&f1,&f2,vdd); /*vector con las Fechas 
+  vector<Fecha*> VDF=Cal2017->get_Fechas(&f1,&f2,vdd); /*vector con las Fechas 
                                                          entre f1 y f2 
                                                          correspondientes a 
                                                          los dias en el vector
@@ -72,13 +72,13 @@ int main(int argc, char** argv) {
     construir un vector de Dias laborables (los dias de clase para los que se 
     planificaran actividades) este vector de Dias laborables se obtendra 
     pasando un mensaje al objeto de clase Calendario*/
-  vector<Dia*> VDDC=Cal2016->get_Dias_DC(VDF,vdnl);  /*obtener Vector De Dias de Clase*/
+  vector<Dia*> VDDC=Cal2017->get_Dias_DC(VDF,vdnl);  /*obtener Vector De Dias de Clase*/
                                                      /*de clase en el salon de clase*/
   /*Se asigna Tiempo Disponible Total segun el dia de que se trate*/
   for(int i=0;i<VDDC.size();i++){
-    if(ARREGLO_2016[VDDC[i]->f->m][VDDC[i]->f->d%7]=="Martes")
+    if(ARREGLO_2017[VDDC[i]->f->m][VDDC[i]->f->d%7]=="Martes")
       VDDC[i]->set_TDT(1.0);
-    if(ARREGLO_2016[VDDC[i]->f->m][VDDC[i]->f->d%7]=="Jueves")
+    if(ARREGLO_2017[VDDC[i]->f->m][VDDC[i]->f->d%7]=="Jueves")
       VDDC[i]->set_TDT(2.0);
   }
   /*Se necesita crear las actividades/temas a asignar en los 
@@ -133,7 +133,7 @@ no celda de costo minimo y de Voguel",2.0));
   /*Por ultimo se hace la planeacion pasando el vector de dias de clase y el 
     vector de actividades*/
   //Cal2016->planear(VDDC,VDA);
-  Cal2016->planear(VDDC,VDA,Alum);
+  Cal2017->planear(VDDC,VDA,Alum);
   /*Finalmente se imprime en pantalla los dias a planear con las actividaes 
     correspondientes por dia de clase entre las fechas f1 y f2.*/
   cout<<"Los dias a planificar son:"<<endl;
@@ -203,13 +203,13 @@ int index_delmes(string month){
  es el string day.
  */
 int primera_fecha_delmes(string day,int i){
-  if(ARREGLO_2016[i][0]==day) return 7;
-  if(ARREGLO_2016[i][1]==day) return 1;
-  if(ARREGLO_2016[i][2]==day) return 2;
-  if(ARREGLO_2016[i][3]==day) return 3;
-  if(ARREGLO_2016[i][4]==day) return 4;
-  if(ARREGLO_2016[i][5]==day) return 5;
-  if(ARREGLO_2016[i][6]==day) return 6;
+  if(ARREGLO_2017[i][0]==day) return 7;
+  if(ARREGLO_2017[i][1]==day) return 1;
+  if(ARREGLO_2017[i][2]==day) return 2;
+  if(ARREGLO_2017[i][3]==day) return 3;
+  if(ARREGLO_2017[i][4]==day) return 4;
+  if(ARREGLO_2017[i][5]==day) return 5;
+  if(ARREGLO_2017[i][6]==day) return 6;
   return -1;/*nunca deberia llegarse aqui*/
 }
 

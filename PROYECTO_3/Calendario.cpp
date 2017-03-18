@@ -39,13 +39,13 @@ int Calendario::index_delmes(string month){
         }
 
 int Calendario::primera_fecha_delmes(string day,int i){
-if(ARREGLO_2016[i][0]==day) return 7;
-if(ARREGLO_2016[i][1]==day) return 1;
-if(ARREGLO_2016[i][2]==day) return 2;
-if(ARREGLO_2016[i][3]==day) return 3;
-if(ARREGLO_2016[i][4]==day) return 4;
-if(ARREGLO_2016[i][5]==day) return 5;
-if(ARREGLO_2016[i][6]==day) return 6; 
+if(ARREGLO_2017[i][0]==day) return 7;
+if(ARREGLO_2017[i][1]==day) return 1;
+if(ARREGLO_2017[i][2]==day) return 2;
+if(ARREGLO_2017[i][3]==day) return 3;
+if(ARREGLO_2017[i][4]==day) return 4;
+if(ARREGLO_2017[i][5]==day) return 5;
+if(ARREGLO_2017[i][6]==day) return 6; 
 }                                                 
                       
 SetDIntType* Calendario::obtener_nums_ddia(string d, string m){
@@ -112,7 +112,7 @@ int Calendario::cant_dFechas(Fecha *fi,Fecha *ff,vector<string> dias){
   int TamM[]={31,29,31,30,31,30,31,31,30,31,30,31};
 inic:
   if((im!=ff->m)||(id!=ff->d)){
-    if(esta_incluido(ARREGLO_2016[im][id%7],dias)){
+    if(esta_incluido(ARREGLO_2017[im][id%7],dias)){
       cnt++;
     }
     if((id+1)<=TamM[im]){
@@ -122,7 +122,7 @@ inic:
     }
     goto inic;
   }
-  if(esta_incluido(ARREGLO_2016[ff->m][ff->d%7],dias)){
+  if(esta_incluido(ARREGLO_2017[ff->m][ff->d%7],dias)){
     cnt++;
   }
   return cnt;
@@ -135,7 +135,7 @@ vector<Fecha*> Calendario::get_Fechas(Fecha *fi,Fecha *ff,vector<string> dias){
   int TamM[]={31,29,31,30,31,30,31,31,30,31,30,31};
 inic:
   if((im!=ff->m)||(id!=ff->d)){
-    if(esta_incluido(ARREGLO_2016[im][id%7],dias)){
+    if(esta_incluido(ARREGLO_2017[im][id%7],dias)){
       vdf.push_back(new Fecha(id,im));
     }
     if((id+1)<=TamM[im]){
@@ -145,7 +145,7 @@ inic:
     }
     goto inic;
   }
-  if(esta_incluido(ARREGLO_2016[ff->m][ff->d%7],dias)){
+  if(esta_incluido(ARREGLO_2017[ff->m][ff->d%7],dias)){
     vdf.push_back(new Fecha(ff->d,ff->m));
   }
   return vdf;
