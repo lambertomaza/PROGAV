@@ -2,17 +2,28 @@
 #include <iostream>
 #define IO  investigacion de operaciones
 using std::string;
-int  NUMDALUMNOS=8;
+int  NUMDALUMNOS=19;    /*NUMero De ALUMNOS*/
 
 string NombresDA[][2]={
-  {"Antonio de Jesus","Alcantar Rocha"},
-  {"Jose Raul","Bautista Contreras"},
-  {"Juan Ivan","Cristobal Rojo"},
-  {"Maria Fernanda","LiY Delgado"},
-  {"Zaira Alejandra","Najera Medina"},
-  {"Luis Ricardo","Rivera Hernandez"},
-  {"Aldo","Rodriguez Hernandez"},
-  {"Antonio","Santiago Santiago"}
+  {"Josue Israel","Arreguin Tinoco"},
+  {"Rafael","Balmaceda Castro"},
+  {"Rene","Barojas Montalvo"},
+  {"Oscar","Bartolo Perez"},
+  {"Cesar","Cirilo Aleman"},
+  {"Ivan Uriel","Cotino Marquina"},
+  {"Israel","Crispin Salmoran"},
+  {"Juan Diego","Cruz Torres"},
+  {"Jesus Alberto","De La Cruz Carbajal"},
+  {"Herson Jesus","De Lara Aguilar"},
+  {"Humberto","Flores Morillon"},
+  {"Efrain","Hilario Palominos"},
+  {"Denilson Jafet","Inocencio Avalos"},
+  {"Dora Elia","Lopez Elorza"},
+  {"Jaime Alejandro","Montoya Garnica"},
+  {"Carlos Antonio","Ponce Jacobo"},
+  {"Jose Enrique","Quino Sanchez"},
+  {"Maria Elena","Vera Cabrera"},
+  {"Montserrat","Zitlalpopocatl Dominguez"}
 };
 
 string OPYE[][12]={/*Objetivos Particulares Y Especificos*/

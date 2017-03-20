@@ -50,7 +50,7 @@ public:
    dias d en el mes m.
    */
   SetDIntType* obtener_nums_ddia(string d,string m);
-  void print_SetDIntYFecha(string d,string m,SetDIntType* SDI);
+  void print_SetDIntYFecha(string d,string m,SetDIntType* SDI,int);
 
   /**
    Obtiene el indice correspondiente al mes month. 

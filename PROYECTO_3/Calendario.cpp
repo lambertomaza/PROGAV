@@ -11,15 +11,20 @@ using std::vector;
 #include "Actividad.h"
 #include "Asignacion.h"
 extern int NUMDALUMNOS;
+extern int anio;       /*20170320*/
 
+/**
+Muestra las fechas del mes m en las cuales el dia es d.
+*/
 void Calendario::mostrar_fechas(string d,string m){
   SetDIntType* sdi=obtener_nums_ddia(d,m);
-  print_SetDIntYFecha(d,m,sdi);
+  print_SetDIntYFecha(d,m,sdi,anio);
 }
 
-void Calendario::print_SetDIntYFecha(string d,string m,SetDIntType* SDI){
+//void Calendario::print_SetDIntYFecha(string d,string m,SetDIntType* SDI){
+void Calendario::print_SetDIntYFecha(string d,string m,SetDIntType* SDI,int numYear){	
   for(int i=0;i<SDI->n;i++){
-    cout<<SDI->intPt[i]<<" de "<<m<<" de 2016"<<endl;
+    cout<<SDI->intPt[i]<<" de "<<m<<" de "<<numYear<<endl;
   }
 }
 int Calendario::index_delmes(string month){ 
@@ -36,7 +41,7 @@ int Calendario::index_delmes(string month){
   if(month=="noviembre")   return 10;
   if(month=="diciembre")   return 11;
    
-        }
+}
 
 int Calendario::primera_fecha_delmes(string day,int i){
 if(ARREGLO_2017[i][0]==day) return 7;
@@ -56,11 +61,19 @@ SetDIntType* Calendario::obtener_nums_ddia(string d, string m){
                      j=primera_fecha_delmes(d,i);
                      }
                      fill_SDIT(i,j,r);
-                     return r; }
- void Calendario:: fill_SDIT(int i,int j,SetDIntType* r){
+                     return r;
+}
+
+void Calendario:: fill_SDIT(int i,int j,SetDIntType* r){
  int diasdmes;
  if (i==0)  diasdmes=31;
- if (i==1)  diasdmes=29;
+ if (i==1){
+ 	if((abs(anio-2016)%4)==0){/*si es anio bisiesto*/
+ 		diasdmes=29;
+	}else{/*si no es anio bisiesto*/
+		diasdmes=28;
+	}
+ } 
  if (i==2)  diasdmes=31;
  if (i==3)  diasdmes=30;
  if (i==4)  diasdmes=31;
