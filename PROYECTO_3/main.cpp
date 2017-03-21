@@ -179,72 +179,14 @@ int main(int argc, char *argv[]) {
 	return 0;
 }//end main()
 
-
-//void Calendario::mostrar_fechas(string d,string m){
-//  SetDIntType* sdi=obtener_nums_ddia(d,m);
-//  print_SetDIntYFecha(d,m,sdi);
-//}
-
-void print_SetDIntYFecha(string d,string m,SetDIntType* SDI){
-  for(int i=0;i<SDI->n;i++){
-    cout<<SDI->intPt[i]<<" de "<<m<<" de 2016"<<endl;
-  }
-}
-
-/**
- Obtiene los numeros de dia de las fechas de los 
- dias d en el mes m.
- */
-SetDIntType* obtener_nums_ddia(string d,string m){
-  SetDIntType* r=(SetDIntType*)malloc(sizeof(SetDIntType));
-  int i,j;  /* i: index del mes en el arreglo ARREGLO_2017*/
-  i=index_delmes(m);
-  if(i>=0 && i<12){
-    j=primera_fecha_delmes(d,i);
-  }
-  fill_SDIT(i,j,r);
-  return r;
-}
-
-
-/**
- Obtiene el indice correspondiente al mes month. 
- Si month="enero", debe devolver 0, 
- Si month="febrero", debe devolver 1, 
- Si month="marzo", debe devolver 2, 
- etc.
- */
-int index_delmes(string month){
-  for(int i=0;i<12;i++){
-    if(month==MONTH[i])
-      return i;
-  }
-  return -1;/*no se encontro la cadena*/
-}
-
-/**
- Devuelve el numero de dia de la primera fecha 
- del mes con indice i (devuelto por 
- index_delmes(string month)), en la que el dia 
- es el string day.
- */
-int primera_fecha_delmes(string day,int i){
-  if(ARREGLO_2017[i][0]==day) return 7;
-  if(ARREGLO_2017[i][1]==day) return 1;
-  if(ARREGLO_2017[i][2]==day) return 2;
-  if(ARREGLO_2017[i][3]==day) return 3;
-  if(ARREGLO_2017[i][4]==day) return 4;
-  if(ARREGLO_2017[i][5]==day) return 5;
-  if(ARREGLO_2017[i][6]==day) return 6;
-  return -1;/*nunca deberia llegarse aqui*/
-}
-
 /*Cantidades de dias de los meses del anio (valido para anios bisiestos)*/
 /*El hecho de que el valor que debe tener la entrada TamDMes[1] dependa de si el
   anio de que se trata es bisiesto o no, significa que es mejor obtener la cantidad 
   de dias del mes a traves de una funcion en la cual se pueda identificar si se trata 
   de un anio bisiesto o  no: Vease la funcion 
-  void Calendario:: fill_SDIT(int i,int j,SetDIntType* r) */
+  void Calendario:: fill_SDIT(int i,int j,SetDIntType* r) 
+  en el archivo Calendario.cpp
+*/
 int TamDMes[]={
   31,/*enero*/
   29,/*febrero*/
@@ -259,33 +201,17 @@ int TamDMes[]={
   30,/*noviembre*/
   31 /*diciembre*/
 };
-
-/**
-  Cumplimenta el SetDIntType al que apunta el apuntador r. 
-  Esto es, despues de llamar a este metodo, r->n contendra
-  la cantidad de veces que se presenta el dia de la semana 
-  correspondiente a la fecha j (j es un int que corresponde 
-  al primer lunes, martes, miercoles etc. 
-  j\in{1,2,3,4,5,6,7}), en el mes con indice i. Mientras que 
-  el apuntador r->intPt apuntara a los numeros de dia en las 
-  fechas tales que el dia coincide con el dia de la fecha j 
-  del mes con indice i.
-  @param i: index del mes; 0 enero, 1 febrero, 2 marzo, etc.
-  @param j: primera fecha del mes correspondiente al dia de  
-            la semana cuyas fechas que estamos buscando.
-  @param r: Conjunto de enteros.
- */
-void fill_SDIT(int i,int j,SetDIntType* r){
-  int cnt=1,k=j;
-  while((k=k+7)<=TamDMes[i])cnt++;
-  r->n=cnt;
-  k=j;
-  r->intPt=(int*)malloc((r->n)*sizeof(int));
-  for(int m=0;m<r->n;m++){
-    *(r->intPt+m)=k;
-    k+=7;
-  }
-}
+//////void fill_SDIT(int i,int j,SetDIntType* r){
+//////  int cnt=1,k=j;
+//////  while((k=k+7)<=TamDMes[i])cnt++;
+//////  r->n=cnt;
+//////  k=j;
+//////  r->intPt=(int*)malloc((r->n)*sizeof(int));
+//////  for(int m=0;m<r->n;m++){
+//////    *(r->intPt+m)=k;
+//////    k+=7;
+//////  }
+//////}
 
 void suma_de_horas(vector<Actividad*> vda){
   float sum=0;

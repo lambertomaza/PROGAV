@@ -114,5 +114,8 @@ public:
   void planear(vector<Dia*> DIA,vector<Actividad*> ACT,vector<Alumno*> Alum);
 
   int numdanio;  //numero de anio
+private:
+	/**devuelve la cantidad de dias que tiene el mes 0-enero,1-febrero,2-marzo */
+	int canddiasdmes(int); /*20170320*/
 };//end class Calendario
 #endif /*CALENDARIO_H*/

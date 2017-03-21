@@ -27,6 +27,14 @@ void Calendario::print_SetDIntYFecha(string d,string m,SetDIntType* SDI,int numY
     cout<<SDI->intPt[i]<<" de "<<m<<" de "<<numYear<<endl;
   }
 }
+
+/**
+ Obtiene el indice correspondiente al mes month. 
+ Si month="enero", debe devolver 0, 
+ Si month="febrero", debe devolver 1, 
+ Si month="marzo", debe devolver 2, 
+ etc.
+ */
 int Calendario::index_delmes(string month){ 
   if(month=="enero")       return 0;
   if(month=="febrero")     return 1;
@@ -43,6 +51,12 @@ int Calendario::index_delmes(string month){
    
 }
 
+/**
+ Devuelve el numero de dia de la primera fecha 
+ del mes con indice i (devuelto por 
+ index_delmes(string month)), en la que el dia 
+ es el string day.
+ */
 int Calendario::primera_fecha_delmes(string day,int i){
 if(ARREGLO_2017[i][0]==day) return 7;
 if(ARREGLO_2017[i][1]==day) return 1;
@@ -52,7 +66,11 @@ if(ARREGLO_2017[i][4]==day) return 4;
 if(ARREGLO_2017[i][5]==day) return 5;
 if(ARREGLO_2017[i][6]==day) return 6; 
 }                                                 
-                      
+
+/**
+ Obtiene los numeros de dia de las fechas de los 
+ dias d en el mes m.
+ */                      
 SetDIntType* Calendario::obtener_nums_ddia(string d, string m){
              SetDIntType* r=(SetDIntType*)malloc(sizeof(SetDIntType));
              int i,j; /* index de l mex es el arreglo*/
@@ -64,26 +82,41 @@ SetDIntType* Calendario::obtener_nums_ddia(string d, string m){
                      return r;
 }
 
+/**
+  Cumplimenta el SetDIntType al que apunta el apuntador r. 
+  Esto es, despues de llamar a este metodo, r->n contendra
+  la cantidad de veces que se presenta el dia de la semana 
+  correspondiente a la fecha j (j es un int que corresponde 
+  al primer lunes, martes, miercoles etc. 
+  j\in{1,2,3,4,5,6,7}), en el mes con indice i. Mientras que 
+  el apuntador r->intPt apuntara a los numeros de dia en las 
+  fechas tales que el dia coincide con el dia de la fecha j 
+  del mes con indice i.
+  @param i: index del mes; 0 enero, 1 febrero, 2 marzo, etc.
+  @param j: primera fecha del mes correspondiente al dia de  
+            la semana cuyas fechas que estamos buscando.
+  @param r: Conjunto de enteros.
+*/
 void Calendario:: fill_SDIT(int i,int j,SetDIntType* r){
- int diasdmes;
- if (i==0)  diasdmes=31;
- if (i==1){
- 	if((abs(anio-2016)%4)==0){/*si es anio bisiesto*/
- 		diasdmes=29;
-	}else{/*si no es anio bisiesto*/
-		diasdmes=28;
-	}
- } 
- if (i==2)  diasdmes=31;
- if (i==3)  diasdmes=30;
- if (i==4)  diasdmes=31;
- if (i==5)  diasdmes=30;
- if (i==6)  diasdmes=31;
- if (i==7)  diasdmes=31;
- if (i==8)  diasdmes=30;
- if (i==9)  diasdmes=31;
- if (i==10) diasdmes=30;
- if (i==11) diasdmes=31;
+ int diasdmes=canddiasdmes(i);
+// if (i==0)  diasdmes=31;
+// if (i==1){
+// 	if((abs(anio-2016)%4)==0){/*si es anio bisiesto*/
+// 		diasdmes=29;
+//	}else{/*si no es anio bisiesto*/
+//		diasdmes=28;
+//	}
+// } 
+// if (i==2)  diasdmes=31;
+// if (i==3)  diasdmes=30;
+// if (i==4)  diasdmes=31;
+// if (i==5)  diasdmes=30;
+// if (i==6)  diasdmes=31;
+// if (i==7)  diasdmes=31;
+// if (i==8)  diasdmes=30;
+// if (i==9)  diasdmes=31;
+// if (i==10) diasdmes=30;
+// if (i==11) diasdmes=31;
  int cnt=0;
  for (int k=j; k<=diasdmes; k+=7)
  {
@@ -122,13 +155,14 @@ bool Calendario::esta_incluido(Fecha* fPt,vector<Dia*> dnl){
 int Calendario::cant_dFechas(Fecha *fi,Fecha *ff,vector<string> dias){
   int im=fi->m,id=fi->d,cnt=0;
   /*cantidades de dias de los meses (2016)*/
-  int TamM[]={31,29,31,30,31,30,31,31,30,31,30,31};
+//  int TamM[]={31,29,31,30,31,30,31,31,30,31,30,31};
 inic:
   if((im!=ff->m)||(id!=ff->d)){
     if(esta_incluido(ARREGLO_2017[im][id%7],dias)){
       cnt++;
     }
-    if((id+1)<=TamM[im]){
+//    if((id+1)<=TamM[im]){
+    if((id+1)<=canddiasdmes(im)){
       id++;
     }else{
       id=1;im++;
@@ -145,13 +179,14 @@ vector<Fecha*> Calendario::get_Fechas(Fecha *fi,Fecha *ff,vector<string> dias){
   int im=fi->m,id=fi->d,cnt=0;
   vector<Fecha*> vdf;
   /*cantidades de dias de los meses (2016)*/
-  int TamM[]={31,29,31,30,31,30,31,31,30,31,30,31};
+//  int TamM[]={31,29,31,30,31,30,31,31,30,31,30,31};
 inic:
   if((im!=ff->m)||(id!=ff->d)){
     if(esta_incluido(ARREGLO_2017[im][id%7],dias)){
       vdf.push_back(new Fecha(id,im));
     }
-    if((id+1)<=TamM[im]){
+//    if((id+1)<=TamM[im]){
+    if((id+1)<=canddiasdmes(im)){	
       id++;
     }else{
       id=1;im++;
@@ -214,4 +249,27 @@ inicio:
   }
   if( !( (i==DIA.size())||(j==ACT.size()) ) )
     goto inicio;
+}
+
+/**devuelve la cantidad de dias que tiene el mes 0-enero,1-febrero,2-marzo */
+int Calendario::canddiasdmes(int i){
+ if (i==0)  return 31;/*enero*/
+ if (i==1){/*febrero*/
+ 	if((abs(anio-2016)%4)==0){/*si es anio bisiesto*/
+ 		return 29;
+	}else{/*si no es anio bisiesto*/
+		return 28;
+	}
+ } 
+ if (i==2)  return 31;/*marzo*/
+ if (i==3)  return 30;/*abril*/
+ if (i==4)  return 31;/*mayo*/
+ if (i==5)  return 30;/*junio*/
+ if (i==6)  return 31;/*julio*/
+ if (i==7)  return 31;/*agosto*/
+ if (i==8)  return 30;/*septiembre*/
+ if (i==9)  return 31;/*octubre*/
+ if (i==10) return 30;/*noviembre*/
+ if (i==11) return 31;/*diciembre*/
+ return -1;/*ninguno de los doce meses del anio*/
 }
