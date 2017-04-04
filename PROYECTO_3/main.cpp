@@ -58,8 +58,9 @@ int main(int argc, char *argv[]) {
 //  print_alumnos(Alum);
   
   Calendario *Cal2017=new Calendario(anio);
-  Fecha f1(1,2); /*Miercoles 1 de marzo de 2017*/
-  Fecha f2(9,5);/*Jueves 9 de junio*/
+  //Fecha f1(1,2); /*Miercoles 1 de marzo de 2017*/
+  Fecha f1(4,3); /*Martes 4 de abril de 2017*/
+  Fecha f2(9,5); /*Jueves 9 de junio*/
 
   vector<string> vdd;         /*vector de dias*/
   vdd.push_back("Martes");    /*los dias que hay clase*/
@@ -95,11 +96,14 @@ int main(int argc, char *argv[]) {
     dias de clase disponibles. Se usa usa constructor de Actividad 
     pasando el nombre del Tema y la duracion del Tema/Actividad en horas.*/
   vector<Actividad*> VDA;
-  VDA.push_back(new Actividad("I.	TEORIA DE PROBABILIDAD",0.0));
-  VDA.push_back(new Actividad("I.A CONCEPTO BASICO DE PROBABILIDAD",1.0));
-  VDA.push_back(new Actividad("I.B CONCEPTO DE EVENTO",1.0));/*Alcantar Rocha Antonio de Jesus*/
-  VDA.push_back(new Actividad("I.C COMBINACIONES DE EVENTOS",1.0));/*Bautista Contreras Jose Raul*/
-  VDA.push_back(new Actividad("I.D PROBABILIDAD CONDICIONAL",1.0));/*Cristobal Rojo Juan Ivan*/
+  //VDA.push_back(new Actividad("I.	TEORIA DE PROBABILIDAD",0.0));
+  //VDA.push_back(new Actividad("I.A CONCEPTO BASICO DE PROBABILIDAD",1.0));
+  //VDA.push_back(new Actividad("I.B CONCEPTO DE EVENTO",1.0));/*Alcantar Rocha Antonio de Jesus*/
+  //VDA.push_back(new Actividad("I.C COMBINACIONES DE EVENTOS",1.0));/*Bautista Contreras Jose Raul*/
+  //VDA.push_back(new Actividad("I.D PROBABILIDAD CONDICIONAL",1.0));/*Cristobal Rojo Juan Ivan*/
+  
+  VDA.push_back(new Actividad("PRIMER EXAMEN PARCIAL",2.0));
+  VDA.push_back(new Actividad("REVISION DE LA EVALUACION",0.0));
   VDA.push_back(new Actividad("I.E TEOREMA DE BAYES",1.0));/*Liy Delgado Maria Fernanda*/
   VDA.push_back(new Actividad("I.F TECNICAS DE CONTEO",1.0));
   VDA.push_back(new Actividad("II.VARIABLES ALEATORIAS",0.0));
@@ -110,8 +114,8 @@ int main(int argc, char *argv[]) {
   VDA.push_back(new Actividad("II.E.	VARIANZA DE UNA VARIABLE ALEATORIA DISCRETA.",1.0));
   VDA.push_back(new Actividad("II.F.	PROLEMAS, VARIANZA DE LA VARIABLE ALEATORIA CONTINUA",1.0));
   
-  VDA.push_back(new Actividad("PRIMER EXAMEN PARCIAL",2.0));
-  VDA.push_back(new Actividad("REVISION DE LA EVALUACION",0.0));
+  //VDA.push_back(new Actividad("PRIMER EXAMEN PARCIAL",2.0));
+  //VDA.push_back(new Actividad("REVISION DE LA EVALUACION",0.0));
   
   VDA.push_back(new Actividad("III DISTRIBUCIONES DISCRETAS",0.0));
   VDA.push_back(new Actividad("III.A.	DISTRIBUCION DE PROBABILIDAD DE BERNOULLI",1.0));
