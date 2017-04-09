@@ -24,6 +24,15 @@ do lu ma mi ju vi sA   do lu ma mi ju vi sA   do lu ma mi ju vi sA
 15 16 17 18 19 20 21   12 13 14 15 16 17 18   12 13 14 15 16 17 18   
 22 23 24 25 26 27 28   19 20 21 22 23 24 25   19 20 21 22 23 24 25   
 29 30 31               26 27 28               26 27 28 29 30 31   
+
+    abril de 2017   
+do lu ma mi ju vi sA
+                   1 
+ 2  3  4  5  6  7  8 
+ 9 10 11 12 13 14 15 
+16 17 18 19 20 21 22 
+23 24 25 26 27 28 29 
+30                  
 */
 string ARREGLO_2017[][7]={
   {"Sabado","Domingo","Lunes","Martes","Miercoles","Jueves","Viernes"}, /*enero*/
@@ -59,7 +68,7 @@ int main(int argc, char *argv[]) {
   
   Calendario *Cal2017=new Calendario(anio);
   //Fecha f1(1,2); /*Miercoles 1 de marzo de 2017*/
-  Fecha f1(4,3); /*Martes 4 de abril de 2017*/
+  Fecha f1(11,3); /*Martes 11 de abril de 2017*/
   Fecha f2(9,5); /*Jueves 9 de junio*/
 
   vector<string> vdd;         /*vector de dias*/
@@ -102,8 +111,9 @@ int main(int argc, char *argv[]) {
   //VDA.push_back(new Actividad("I.C COMBINACIONES DE EVENTOS",1.0));/*Bautista Contreras Jose Raul*/
   //VDA.push_back(new Actividad("I.D PROBABILIDAD CONDICIONAL",1.0));/*Cristobal Rojo Juan Ivan*/
   
-  VDA.push_back(new Actividad("PRIMER EXAMEN PARCIAL",2.0));
-  VDA.push_back(new Actividad("REVISION DE LA EVALUACION",0.0));
+  //VDA.push_back(new Actividad("PRIMER EXAMEN PARCIAL",2.0));
+  //VDA.push_back(new Actividad("REVISION DE LA EVALUACION",0.0));
+  
   VDA.push_back(new Actividad("I.E TEOREMA DE BAYES",1.0));/*Liy Delgado Maria Fernanda*/
   VDA.push_back(new Actividad("I.F TECNICAS DE CONTEO",1.0));
   VDA.push_back(new Actividad("II.VARIABLES ALEATORIAS",0.0));
@@ -162,7 +172,7 @@ int main(int argc, char *argv[]) {
   
   /*Finalmente se imprime en pantalla los dias a planear con las actividaes 
     correspondientes por dia de clase entre las fechas f1 y f2.*/
-  Dia *hoy=new Dia(new Fecha(20,2));/*Lunes 20 de marzo de (anio)*/
+  Dia *hoy=new Dia(new Fecha(9,3));/*Lunes 20 de marzo de (anio)*/
   cout<<"                                                     "<<*hoy;
   cout<<"Planeacion de actividades de unidad de aprendizaje: PROBABILIDAD Y ESTADISTICA"<<endl;
   cout<<"Los dias a planificar son:"<<endl;
