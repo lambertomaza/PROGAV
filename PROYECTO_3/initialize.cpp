@@ -9,6 +9,7 @@ using std::vector;
 using std::ostream;
 #include "Alumno.h"
 extern int NUMDALUMNOS; /*cantidad de filas del siguiente arreglo bidimensional*/
+                        /*definido en nombresdalumnos.cpp*/
 extern string NombresDA[][2];
 
 void alumno_init(vector<Alumno*>& alumno){
@@ -28,3 +29,5 @@ void alumno_init(vector<Alumno*>& alumno){
 void print_alumnos(vector<Alumno*> vda){
   for(int i=0;i<vda.size();i++) cout<<*vda[i]<<endl;
 }
+
+extern string TecDEnsYActDApr[][2];

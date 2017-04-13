@@ -2,29 +2,37 @@
 #include <iostream>
 #define IO  investigacion de operaciones
 using std::string;
-int  NUMDALUMNOS=19;    /*NUMero De ALUMNOS*/
+//int  NUMDALUMNOS=19;    /*NUMero De ALUMNOS*/
+int  NUMDALUMNOS=5;
 
+//string NombresDA[][2]={
+//  {"Josue Israel","Arreguin Tinoco"},
+//  {"Rafael","Balmaceda Castro"},
+//  {"Rene","Barojas Montalvo"},
+//  {"Oscar","Bartolo Perez"},
+//  {"Cesar","Cirilo Aleman"},
+//  {"Ivan Uriel","Cotino Marquina"},
+//  {"Israel","Crispin Salmoran"},
+//  {"Juan Diego","Cruz Torres"},
+//  {"Jesus Alberto","De La Cruz Carbajal"},
+//  {"Herson Jesus","De Lara Aguilar"},
+//  {"Humberto","Flores Morillon"},
+//  {"Efrain","Hilario Palominos"},
+//  {"Denilson Jafet","Inocencio Avalos"},
+//  {"Dora Elia","Lopez Elorza"},
+//  {"Jaime Alejandro","Montoya Garnica"},
+//  {"Carlos Antonio","Ponce Jacobo"},
+//  {"Jose Enrique","Quino Sanchez"},
+//  {"Maria Elena","Vera Cabrera"},
+//  {"Montserrat","Zitlalpopocatl Dominguez"}
+//};
 string NombresDA[][2]={
-  {"Josue Israel","Arreguin Tinoco"},
-  {"Rafael","Balmaceda Castro"},
-  {"Rene","Barojas Montalvo"},
-  {"Oscar","Bartolo Perez"},
-  {"Cesar","Cirilo Aleman"},
-  {"Ivan Uriel","Cotino Marquina"},
-  {"Israel","Crispin Salmoran"},
-  {"Juan Diego","Cruz Torres"},
-  {"Jesus Alberto","De La Cruz Carbajal"},
-  {"Herson Jesus","De Lara Aguilar"},
-  {"Humberto","Flores Morillon"},
-  {"Efrain","Hilario Palominos"},
-  {"Denilson Jafet","Inocencio Avalos"},
-  {"Dora Elia","Lopez Elorza"},
-  {"Jaime Alejandro","Montoya Garnica"},
-  {"Carlos Antonio","Ponce Jacobo"},
-  {"Jose Enrique","Quino Sanchez"},
-  {"Maria Elena","Vera Cabrera"},
-  {"Montserrat","Zitlalpopocatl Dominguez"}
-};
+  {"EQUIPO","1"},
+  {"EQUIPO","2"},
+  {"EQUIPO","3"},
+  {"EQUIPO","4"},
+  {"EQUIPO","5"}
+};//Debido a esto hay que hacer NUMDALUMNOS=5
 
 string OPYE[][12]={/*Objetivos Particulares Y Especificos*/
   {"",
@@ -126,3 +134,15 @@ sin error de concepto, evidenciando el valor de honradez.",
 "5.11 Resolvera por escrito por lo menos un problema de asignacion, usando el metodo \
 hungaro, sin error de concepto, evidenciando el valor de honradez."}
 };
+
+/**
+Tabla catalogo de Tecnicas de Ensenianza y Actividades de Aprendizaje
+*/
+string TecDEnsYActDApr[][2]={/*Tecnicas de Ensenianza Y Actividades de Aprendizaje*/
+/*0*/  {"TEC. ENS. sin definir","ACT. APR. sin definir"},
+/*1*/  {"EXPOSICION","Conocera"},
+/*2*/  {"EXPOSICION TEMPRANA A PROBLEMAS DE INGENIERIA, BUSQUEDAS BIBLIOGRAFICAS","Conocera el/los ..."},
+/*3*/  {"INDAGACION BIBLIOGRAFICA DE MODELOS MATEMATICOS","Conocera la metodologia utilizada para ..., Conocera los modelos matematicos ..."},
+/*4*/  {"PRESENTACIONES EN SOFTWARE DE DIAPOSITIVAS Y RESOLUCION DE PROBLEMAS","Resolvera problemas de ..."}
+};
+

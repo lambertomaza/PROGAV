@@ -67,8 +67,8 @@ int main(int argc, char *argv[]) {
 //  print_alumnos(Alum);
   
   Calendario *Cal2017=new Calendario(anio);
-  //Fecha f1(1,2); /*Miercoles 1 de marzo de 2017*/
-  Fecha f1(11,3); /*Martes 11 de abril de 2017*/
+  Fecha f1(1,2); /*Miercoles 1 de marzo de 2017*/
+//  Fecha f1(11,3); /*Martes 11 de abril de 2017*/
   Fecha f2(9,5); /*Jueves 9 de junio*/
 
   vector<string> vdd;         /*vector de dias*/
@@ -105,24 +105,41 @@ int main(int argc, char *argv[]) {
     dias de clase disponibles. Se usa usa constructor de Actividad 
     pasando el nombre del Tema y la duracion del Tema/Actividad en horas.*/
   vector<Actividad*> VDA;
-  //VDA.push_back(new Actividad("I.	TEORIA DE PROBABILIDAD",0.0));
-  //VDA.push_back(new Actividad("I.A CONCEPTO BASICO DE PROBABILIDAD",1.0));
-  //VDA.push_back(new Actividad("I.B CONCEPTO DE EVENTO",1.0));/*Alcantar Rocha Antonio de Jesus*/
-  //VDA.push_back(new Actividad("I.C COMBINACIONES DE EVENTOS",1.0));/*Bautista Contreras Jose Raul*/
-  //VDA.push_back(new Actividad("I.D PROBABILIDAD CONDICIONAL",1.0));/*Cristobal Rojo Juan Ivan*/
+  VDA.push_back(new Actividad("I.	TEORIA DE PROBABILIDAD",0.0,0));
   
-  //VDA.push_back(new Actividad("PRIMER EXAMEN PARCIAL",2.0));
-  //VDA.push_back(new Actividad("REVISION DE LA EVALUACION",0.0));
+  VDA.push_back(new Actividad("RELACION BINARIA",0.5,1));
+  VDA.push_back(new Actividad("FUNCION",1.0,1));
+  VDA.push_back(new Actividad("FUNCIONES CONTINUAS Y FUNCIONES MEDIBLES",1.0,1));
   
-  VDA.push_back(new Actividad("I.E TEOREMA DE BAYES",1.0));/*Liy Delgado Maria Fernanda*/
-  VDA.push_back(new Actividad("I.F TECNICAS DE CONTEO",1.0));
-  VDA.push_back(new Actividad("II.VARIABLES ALEATORIAS",0.0));
-  VDA.push_back(new Actividad("II.A.	VARIABLES ALEATORIAS DISCRETAS",2.5));
-  VDA.push_back(new Actividad("II.B.	VARIABLES ALEATORIAS CONTINUAS",2.5));
-  VDA.push_back(new Actividad("II.C.	VALOR ESPERADO DE UNA VARIABLE ALEATORIA",2.5));
-  VDA.push_back(new Actividad("II.D.	PROBLEMAS DE VALOR ESPERADO DE LA VARIABLE ALEATORIA CONTINUA",2.5));
-  VDA.push_back(new Actividad("II.E.	VARIANZA DE UNA VARIABLE ALEATORIA DISCRETA.",1.0));
-  VDA.push_back(new Actividad("II.F.	PROLEMAS, VARIANZA DE LA VARIABLE ALEATORIA CONTINUA",1.0));
+  VDA.push_back(new Actividad("I.A CONCEPTO BASICO DE PROBABILIDAD",2.0,1));
+  
+  VDA.push_back(new Actividad("ESPACIO MUESTRAL",1.0,1));
+  
+  VDA.push_back(new Actividad("I.B CONCEPTO DE EVENTO",2.0,1));
+  
+  VDA.push_back(new Actividad("SIGMA ALGEBRA",3.0,3));
+  VDA.push_back(new Actividad("MEDIDAS DE PROBABILIDAD",1.0,3));
+  VDA.push_back(new Actividad("ESPACIOS DE PROBABILIDAD",1.0,1));
+  
+  VDA.push_back(new Actividad("I.C COMBINACIONES DE EVENTOS",2.0,2));
+  VDA.push_back(new Actividad("I.D PROBABILIDAD CONDICIONAL",3.5,2));
+  
+  VDA.push_back(new Actividad("PRIMER EXAMEN PARCIAL",2.0));
+  VDA.push_back(new Actividad("REVISION DE LA EVALUACION",2.0));
+  
+  VDA.push_back(new Actividad("TEOREMA DE PROBABILIDAD TOTAL/REGLA DE ELIMINACION",1.5,3));
+  VDA.push_back(new Actividad("Dummy 1",0.25));
+  VDA.push_back(new Actividad("Dummy 2",0.25));
+  
+  VDA.push_back(new Actividad("I.E TEOREMA DE BAYES",1.0,4));
+  VDA.push_back(new Actividad("I.F TECNICAS DE CONTEO",1.0,2));
+  VDA.push_back(new Actividad("II.VARIABLES ALEATORIAS",0.0,3));
+  VDA.push_back(new Actividad("II.A.	VARIABLES ALEATORIAS DISCRETAS",2.5,3));
+  VDA.push_back(new Actividad("II.B.	VARIABLES ALEATORIAS CONTINUAS",2.5,0));
+  VDA.push_back(new Actividad("II.C.	VALOR ESPERADO DE UNA VARIABLE ALEATORIA",2.5,0));
+  VDA.push_back(new Actividad("II.D.	PROBLEMAS DE VALOR ESPERADO DE LA VARIABLE ALEATORIA CONTINUA",2.5,0));
+  VDA.push_back(new Actividad("II.E.	VARIANZA DE UNA VARIABLE ALEATORIA DISCRETA.",1.0,0));
+  VDA.push_back(new Actividad("II.F.	PROBLEMAS, VARIANZA DE LA VARIABLE ALEATORIA CONTINUA",1.0,0));
   
   //VDA.push_back(new Actividad("PRIMER EXAMEN PARCIAL",2.0));
   //VDA.push_back(new Actividad("REVISION DE LA EVALUACION",0.0));
@@ -172,21 +189,28 @@ int main(int argc, char *argv[]) {
   
   /*Finalmente se imprime en pantalla los dias a planear con las actividaes 
     correspondientes por dia de clase entre las fechas f1 y f2.*/
-  Dia *hoy=new Dia(new Fecha(9,3));/*Lunes 20 de marzo de (anio)*/
-  cout<<"                                                     "<<*hoy;
+  //Dia *hoy=new Dia(new Fecha(9,3));/*Domingo 9 de marzo de (anio)*/
+  Dia *hoy=new Dia(new Fecha(12,3));/*Miercoles 12 de abril de (anio)*/
+  cout<<"                                                   "<<*hoy;
   cout<<"Planeacion de actividades de unidad de aprendizaje: PROBABILIDAD Y ESTADISTICA"<<endl;
   cout<<"Los dias a planificar son:"<<endl;
+
   for(int i=0;i<VDDC.size();i++){
     cout<<*VDDC[i]<<endl;
+    if((i%1)==0){
+#ifdef _WIN32
+	system("PAUSE");
+#endif    	
+	}
   }
   suma_de_horas(VDA);
   
-  Antonio_de_Jesus_Alcantar_Rocha *Antonio=new 
-  Antonio_de_Jesus_Alcantar_Rocha(NombresDA[0][0],NombresDA[0][1]);
-  Alumno *alum=Alum[0];
-  alum->opye();
-  alum=Alum[1];
-  alum->opye();
+  //Antonio_de_Jesus_Alcantar_Rocha *Antonio=new 
+  //Antonio_de_Jesus_Alcantar_Rocha(NombresDA[0][0],NombresDA[0][1]);
+  //Alumno *alum=Alum[0];
+  //alum->opye();
+  //alum=Alum[1];
+  //alum->opye();
 #ifdef _WIN32
 	system("PAUSE");
 #endif

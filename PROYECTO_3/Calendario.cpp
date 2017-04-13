@@ -215,12 +215,14 @@ inicio:
   if(ACT[j]->TR<=DIA[i]->TD){
   	
     DIA[i]->TD-=ACT[j]->TR;
-    DIA[i]->A.push_back(new Asignacion(ACT[j],ACT[j]->TR));
+    //DIA[i]->A.push_back(new Asignacion(ACT[j],ACT[j]->TR));
+    DIA[i]->A.push_back(new Asignacion(ACT[j],ACT[j]->TR,ACT[j]->indexToTecDEnsYActDApr));
     j++;
     if(DIA[i]->TD==0)
       i++;
   }else{
-    DIA[i]->A.push_back(new Asignacion(ACT[j],DIA[i]->TD));
+    //DIA[i]->A.push_back(new Asignacion(ACT[j],DIA[i]->TD));
+    DIA[i]->A.push_back(new Asignacion(ACT[j],DIA[i]->TD,ACT[j]->indexToTecDEnsYActDApr));
     ACT[j]->TR-=DIA[i]->TD;
     i++;
   }
@@ -235,21 +237,22 @@ inicio:
   if(ACT[j]->TR<=DIA[i]->TD){
   	
     DIA[i]->TD-=ACT[j]->TR;
-    DIA[i]->A.push_back(new Asignacion(ACT[j],ACT[j]->TR,Alum[k],&nda));
+    DIA[i]->A.push_back(new Asignacion(ACT[j],ACT[j]->TR,Alum[k],&nda,ACT[j]->indexToTecDEnsYActDApr));
     j++;
     if(DIA[i]->TD==0)
       i++;
   }else{
-    DIA[i]->A.push_back(new Asignacion(ACT[j],DIA[i]->TD,Alum[k],&nda));
+    DIA[i]->A.push_back(new Asignacion(ACT[j],DIA[i]->TD,Alum[k],&nda,ACT[j]->indexToTecDEnsYActDApr));
     ACT[j]->TR-=DIA[i]->TD;
     i++;
   }
-  if(nda>=3){
+  //if(nda>=3){
+  if(nda>=0){
     k=(k+1)%NUMDALUMNOS;
   }
   if( !( (i==DIA.size())||(j==ACT.size()) ) )
     goto inicio;
-}
+}//end void Calendario::planear()
 
 /**devuelve la cantidad de dias que tiene el mes 0-enero,1-febrero,2-marzo */
 int Calendario::canddiasdmes(int i){
