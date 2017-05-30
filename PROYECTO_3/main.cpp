@@ -122,7 +122,7 @@ int main(int argc, char *argv[]) {
   VDA.push_back(new Actividad("ESPACIOS DE PROBABILIDAD",1.0,1));
   
   VDA.push_back(new Actividad("I.C COMBINACIONES DE EVENTOS",2.0,2));
-  VDA.push_back(new Actividad("I.D PROBABILIDAD CONDICIONAL",3.5,2));
+  VDA.push_back(new Actividad("I.D PROBABILIDAD CONDICIONAL",3.5,5));
   
   VDA.push_back(new Actividad("PRIMER EXAMEN PARCIAL",2.0));
   VDA.push_back(new Actividad("REVISION DE LA EVALUACION",2.0));
@@ -131,24 +131,28 @@ int main(int argc, char *argv[]) {
   VDA.push_back(new Actividad("Dummy 1",0.25));
   VDA.push_back(new Actividad("Dummy 2",0.25));
   
-  VDA.push_back(new Actividad("I.E TEOREMA DE BAYES",1.0,4));
-  VDA.push_back(new Actividad("I.F TECNICAS DE CONTEO",1.0,2));
+  VDA.push_back(new Actividad("I.E TEOREMA DE BAYES",2.0,4));
+  VDA.push_back(new Actividad("I.F TECNICAS DE CONTEO",2.0,2));
   VDA.push_back(new Actividad("II.VARIABLES ALEATORIAS",0.0,3));
-  VDA.push_back(new Actividad("II.A.	VARIABLES ALEATORIAS DISCRETAS",2.5,3));
-  VDA.push_back(new Actividad("II.B.	VARIABLES ALEATORIAS CONTINUAS",2.5,0));
-  VDA.push_back(new Actividad("II.C.	VALOR ESPERADO DE UNA VARIABLE ALEATORIA",2.5,0));
-  VDA.push_back(new Actividad("II.D.	PROBLEMAS DE VALOR ESPERADO DE LA VARIABLE ALEATORIA CONTINUA",2.5,0));
-  VDA.push_back(new Actividad("II.E.	VARIANZA DE UNA VARIABLE ALEATORIA DISCRETA.",1.0,0));
-  VDA.push_back(new Actividad("II.F.	PROBLEMAS, VARIANZA DE LA VARIABLE ALEATORIA CONTINUA",1.0,0));
+  VDA.push_back(new Actividad("II.A.	VARIABLES ALEATORIAS DISCRETAS",4.0,3));
+  VDA.push_back(new Actividad("II.B.	VARIABLES ALEATORIAS CONTINUAS",2.0,0));
   
-  //VDA.push_back(new Actividad("PRIMER EXAMEN PARCIAL",2.0));
-  //VDA.push_back(new Actividad("REVISION DE LA EVALUACION",0.0));
+  VDA.push_back(new Actividad("FUNCION DE DISTRIBUCION Y FUNCION DE DENSIDAD DE V. A. DISCRETAS",2.0,0));
+  VDA.push_back(new Actividad("FUNCION DE DISTRIBUCION Y FUNCION DE DENSIDAD DE V. A. CONTINUAS",2.0,0));
+  
+  VDA.push_back(new Actividad("II.C.	VALOR ESPERADO DE UNA VARIABLE ALEATORIA",0.5,0));
+  VDA.push_back(new Actividad("II.D.	PROBLEMAS DE VALOR ESPERADO DE LA VARIABLE ALEATORIA CONTINUA",0.5,0));
+  VDA.push_back(new Actividad("II.E.	VARIANZA DE UNA VARIABLE ALEATORIA DISCRETA.",0.5,0));
+  VDA.push_back(new Actividad("II.F.	PROBLEMAS, VARIANZA DE LA VARIABLE ALEATORIA CONTINUA",0.5,0));
+  
+  VDA.push_back(new Actividad("SEGUNDO EXAMEN PARCIAL",2.0,0));
+  VDA.push_back(new Actividad("REVISION DE LA EVALUACION",2.0,0));
   
   VDA.push_back(new Actividad("III DISTRIBUCIONES DISCRETAS",0.0));
-  VDA.push_back(new Actividad("III.A.	DISTRIBUCION DE PROBABILIDAD DE BERNOULLI",1.0));
-  VDA.push_back(new Actividad("III.B.	DISTRIBUCION DE PROBABILIDAD BINOMIAL",1.0));
-  VDA.push_back(new Actividad("III.C.	DISTRIBUCION DE PROBABILIDAD GEOMETRICA",1.0));
-  VDA.push_back(new Actividad("III.D.	DISTRIBUCION DE PROBABILIDAD BINOMIAL NEGATIVA",1.0));
+  VDA.push_back(new Actividad("III.A.	DISTRIBUCION DE PROBABILIDAD DE BERNOULLI",2.0));
+  VDA.push_back(new Actividad("III.B.	DISTRIBUCION DE PROBABILIDAD BINOMIAL",2.0));
+  VDA.push_back(new Actividad("III.C.	DISTRIBUCION DE PROBABILIDAD GEOMETRICA",2.0));
+  VDA.push_back(new Actividad("III.D.	DISTRIBUCION DE PROBABILIDAD BINOMIAL NEGATIVA",2.0));
   VDA.push_back(new Actividad("III.E.	DISTRIBUCION HIPERGEOMETRICA",1.0));
   VDA.push_back(new Actividad("III.F.	DISTRIBUCION DE POISSON",1.0));
   VDA.push_back(new Actividad("IV.	DISTRIBUCIONES CONTINUAS",0.0));
@@ -196,6 +200,8 @@ int main(int argc, char *argv[]) {
   cout<<"Los dias a planificar son:"<<endl;
 
   for(int i=0;i<VDDC.size();i++){
+  	cout<<"(SECUENCIA DIDACTICA No. "<<i+1<<") ";
+  	cout<<"AVANCE PROGRAMATICO: "<<100*((float)i/VDDC.size())<<"%"<<endl;
     cout<<*VDDC[i]<<endl;
     if((i%1)==0){
 #ifdef _WIN32

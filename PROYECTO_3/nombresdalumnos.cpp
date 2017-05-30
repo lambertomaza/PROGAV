@@ -143,6 +143,7 @@ string TecDEnsYActDApr[][2]={/*Tecnicas de Ensenianza Y Actividades de Aprendiza
 /*1*/  {"EXPOSICION","Conocera"},
 /*2*/  {"EXPOSICION TEMPRANA A PROBLEMAS DE INGENIERIA, BUSQUEDAS BIBLIOGRAFICAS","Conocera el/los ..."},
 /*3*/  {"INDAGACION BIBLIOGRAFICA DE MODELOS MATEMATICOS","Conocera la metodologia utilizada para ..., Conocera los modelos matematicos ..."},
-/*4*/  {"PRESENTACIONES EN SOFTWARE DE DIAPOSITIVAS Y RESOLUCION DE PROBLEMAS","Resolvera problemas de ..."}
+/*4*/  {"PRESENTACIONES EN SOFTWARE DE DIAPOSITIVAS Y RESOLUCION DE PROBLEMAS","Resolvera problemas de ..."},
+/*5*/  {"EXPOSICION Y ACTIVIDADES DE LOS DISCENTES INCLUYENDO EL ANALISIS DE UN CASO DE PROBLEMA DE ","Resolvera problemas de ..."}
 };
 
