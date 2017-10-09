@@ -10,8 +10,31 @@ using std::vector;
 #include "Dia.h"
 #include "Actividad.h"
 #include "Asignacion.h"
+//#include "year.h"
 extern int NUMDALUMNOS;
-extern int anio;       /*20170320*/
+int anio=2017;       /*20170320*/
+/**
+ * string ARREGLO[][7] -- Contiene los nombres de los dias de la semana para el anio 2017.
+ * Forma de uso: Para obtener el nombre del dia correspondiente a una fecha del anio 2017, 
+ *               digamos dd/mm/2016, se puede usar la siguiente expresion:
+ *               string day_name=ARREGLO[(mm)-(1)][(dd)%(7)];
+ *               Por ejemplo, usando esta expresion se puede saber que el pasado 24 de diciembre
+ *               de 2016, 28/9/2017 fue ARREGLO[(9)-(1)][(28)%(7)]=ARREGLO[8][0]="Jueves"
+ */
+string ARREGLO[][7]={
+  {"Sabado","Domingo","Lunes","Martes","Miercoles","Jueves","Viernes"}, /*enero 2017*/
+  {"Martes","Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes"}, /*febrero 2017*/
+  {"Martes","Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes"}, /*marzo 2017*/
+  {"Viernes","Sabado","Domingo","Lunes","Martes","Miercoles","Jueves"}, /*abril 2017*/
+  {"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"}, /*mayo 2017*/
+  {"Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes","Martes"}, /*junio 2017*/
+  {"Viernes","Sabado","Domingo","Lunes","Martes","Miercoles","Jueves"}, /*julio 2017*/
+  {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"}, /*agosto 2017*/
+  {"Jueves","Viernes","Sabado","Domingo","Lunes","Martes","Miercoles"}, /*septiembre 2017*/
+  {"Sabado","Domingo","Lunes","Martes","Miercoles","Jueves","Viernes"}, /*octubre 2017*/
+  {"Martes","Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes"}, /*noviembre 2017*/
+  {"Jueves","Viernes","Sabado","Domingo","Lunes","Martes","Miercoles"}  /*diciembre 2017*/
+};
 
 /**
 Muestra las fechas del mes m en las cuales el dia es d.
@@ -58,13 +81,13 @@ int Calendario::index_delmes(string month){
  es el string day.
  */
 int Calendario::primera_fecha_delmes(string day,int i){
-if(ARREGLO_2017[i][0]==day) return 7;
-if(ARREGLO_2017[i][1]==day) return 1;
-if(ARREGLO_2017[i][2]==day) return 2;
-if(ARREGLO_2017[i][3]==day) return 3;
-if(ARREGLO_2017[i][4]==day) return 4;
-if(ARREGLO_2017[i][5]==day) return 5;
-if(ARREGLO_2017[i][6]==day) return 6; 
+if(ARREGLO[i][0]==day) return 7;
+if(ARREGLO[i][1]==day) return 1;
+if(ARREGLO[i][2]==day) return 2;
+if(ARREGLO[i][3]==day) return 3;
+if(ARREGLO[i][4]==day) return 4;
+if(ARREGLO[i][5]==day) return 5;
+if(ARREGLO[i][6]==day) return 6; 
 }                                                 
 
 /**
@@ -158,7 +181,8 @@ int Calendario::cant_dFechas(Fecha *fi,Fecha *ff,vector<string> dias){
 //  int TamM[]={31,29,31,30,31,30,31,31,30,31,30,31};
 inic:
   if((im!=ff->m)||(id!=ff->d)){
-    if(esta_incluido(ARREGLO_2017[im][id%7],dias)){
+//    if(esta_incluido(ARREGLO_2017[im][id%7],dias)){
+    if(esta_incluido(ARREGLO[im][id%7],dias)){
       cnt++;
     }
 //    if((id+1)<=TamM[im]){
@@ -169,7 +193,8 @@ inic:
     }
     goto inic;
   }
-  if(esta_incluido(ARREGLO_2017[ff->m][ff->d%7],dias)){
+//  if(esta_incluido(ARREGLO_2017[ff->m][ff->d%7],dias)){
+  if(esta_incluido(ARREGLO[ff->m][ff->d%7],dias)){
     cnt++;
   }
   return cnt;
@@ -182,7 +207,8 @@ vector<Fecha*> Calendario::get_Fechas(Fecha *fi,Fecha *ff,vector<string> dias){
 //  int TamM[]={31,29,31,30,31,30,31,31,30,31,30,31};
 inic:
   if((im!=ff->m)||(id!=ff->d)){
-    if(esta_incluido(ARREGLO_2017[im][id%7],dias)){
+//    if(esta_incluido(ARREGLO_2017[im][id%7],dias)){
+    if(esta_incluido(ARREGLO[im][id%7],dias)){
       vdf.push_back(new Fecha(id,im));
     }
 //    if((id+1)<=TamM[im]){
@@ -193,7 +219,8 @@ inic:
     }
     goto inic;
   }
-  if(esta_incluido(ARREGLO_2017[ff->m][ff->d%7],dias)){
+//  if(esta_incluido(ARREGLO_2017[ff->m][ff->d%7],dias)){
+  if(esta_incluido(ARREGLO[ff->m][ff->d%7],dias)){
     vdf.push_back(new Fecha(ff->d,ff->m));
   }
   return vdf;

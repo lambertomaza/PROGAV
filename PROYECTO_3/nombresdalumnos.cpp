@@ -33,7 +33,16 @@ string NombresDA[][2]={
   {"EQUIPO","4"},
   {"EQUIPO","5"}
 };//Debido a esto hay que hacer NUMDALUMNOS=5
-
+//string NombresDA[][2]={
+//  {"Discente 1 de 4/o ICE","IO"},
+//  {"Discente 2 de 4/o ICE","IO"},
+//  {"Discente 3 de 4/o ICE","IO"},
+//  {"Discente 4 de 4/o ICE","IO"},
+//  {"Discente 5 de 4/o ICE","IO"},
+//  {"Discente 6 de 4/o ICE","IO"},
+//  {"Discente 7 de 4/o ICE","IO"},
+//  {"Discente 8 de 4/o ICE","IO"}
+//};
 string OPYE[][12]={/*Objetivos Particulares Y Especificos*/
   {"",
 "",
@@ -141,9 +150,13 @@ Tabla catalogo de Tecnicas de Ensenianza y Actividades de Aprendizaje
 string TecDEnsYActDApr[][2]={/*Tecnicas de Ensenianza Y Actividades de Aprendizaje*/
 /*0*/  {"TEC. ENS. sin definir","ACT. APR. sin definir"},
 /*1*/  {"EXPOSICION","Conocera"},
-/*2*/  {"EXPOSICION TEMPRANA A PROBLEMAS DE INGENIERIA, BUSQUEDAS BIBLIOGRAFICAS","Conocera el/los ..."},
-/*3*/  {"INDAGACION BIBLIOGRAFICA DE MODELOS MATEMATICOS","Conocera la metodologia utilizada para ..., Conocera los modelos matematicos ..."},
-/*4*/  {"PRESENTACIONES EN SOFTWARE DE DIAPOSITIVAS Y RESOLUCION DE PROBLEMAS","Resolvera problemas de ..."},
-/*5*/  {"EXPOSICION Y ACTIVIDADES DE LOS DISCENTES INCLUYENDO EL ANALISIS DE UN CASO DE PROBLEMA DE ","Resolvera problemas de ..."}
-};
+/*2*/  {"EXPOSICION TEMPRANA A PROBLEMAS DE INGENIERIA, BUSQUEDAS BIBLIOGRAFICAS",
+		"Conocera el/los ..."},
+/*3*/  {"INDAGACION BIBLIOGRAFICA DE MODELOS MATEMATICOS",
+		"Conocera la metodologia utilizada para ..., Conocera los modelos matematicos ..."},
+/*4*/  {"PRESENTACIONES EN SOFTWARE DE DIAPOSITIVAS Y RESOLUCION DE PROBLEMAS",
+		"Resolvera problemas de ..."},
+/*5*/  {"EXPOSICION Y ACTIVIDADES DE LOS DISCENTES INCLUYENDO EL ANALISIS DE UN CASO DE PROBLEMA DE ...",
+		"Resolvera problemas de ..."}
+};//end string TecDEnsYActDApr[][2]
 

@@ -11,9 +11,11 @@ using std::vector;
 #include "Dia.h"
 #include "Actividad.h"
 #include "Alumno.h"
+#include "year.h"
+#include "dummy.h"
 extern string NombresDA[][2];
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-int anio=2017;
+//int anio=2017;
 /**
                                2017                               
 
@@ -34,20 +36,16 @@ do lu ma mi ju vi sA
 23 24 25 26 27 28 29 
 30                  
 */
-string ARREGLO_2017[][7]={
-  {"Sabado","Domingo","Lunes","Martes","Miercoles","Jueves","Viernes"}, /*enero*/
-  {"Martes","Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes"}, /*febrero*/
-  {"Martes","Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes"}, /*marzo*/
-  {"Viernes","Sabado","Domingo","Lunes","Martes","Miercoles","Jueves"}, /*abril*/
-  {"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"}, /*mayo*/
-  {"Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes","Martes"}, /*junio*/
-  {"Viernes","Sabado","Domingo","Lunes","Martes","Miercoles","Jueves"}, /*julio*/
-  {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"}, /*agosto*/
-  {"Jueves","Viernes","Sabado","Domingo","Lunes","Martes","Miercoles"}, /*septiembre*/
-  {"Sabado","Domingo","Lunes","Martes","Miercoles","Jueves","Viernes"}, /*octubre*/
-  {"Martes","Miercoles","Jueves","Viernes","Sabado","Domingo","Lunes"}, /*noviembre*/
-  {"Jueves","Viernes","Sabado","Domingo","Lunes","Martes","Miercoles"}  /*diciembre*/
-};
+extern int anio;
+///** Now included through #include year.h
+// * string ARREGLO[][7] -- Contiene los nombres de los dias de la semana para el anio 2016.
+// * Forma de uso: Para obtener el nombre del dia correspondiente a una fecha del anio 2016, 
+// *               digamos dd/mm/2016, se puede usar la siguiente expresion:
+// *               string day_name=ARREGLO[(mm)-(1)][(dd)%(7)];
+// *               Por ejemplo, usando esta expresion se puede saber que el pasado 24 de diciembre
+// *               de 2016, 24/12/2016 fue ARREGLO[(12)-(1)][(24)%(7)]=ARREGLO[11][3]="Sabado"
+// */
+
 
 string MONTH[]={"enero","febrero","marzo","abril","mayo","junio","julio","agosto",
               "septiembre","octubre","noviembre","diciembre"};
@@ -64,15 +62,17 @@ void print_alumnos(vector<Alumno*>);
 int main(int argc, char *argv[]) {
   vector<Alumno*> Alum;
   alumno_init(Alum);
+  cout<<"\t\t\t\t\t"<<ARREGLO[9][2%7]<<" 2 de octubre de 2017"<<endl;
+  cout<<"Asignatura:Investigacion de Operaciones"<<endl;
+  cout<<"Relacion de discentes del grupo 4/o ICE-EMI"<<endl;
 //  print_alumnos(Alum);
   
   Calendario *Cal2017=new Calendario(anio);
-  Fecha f1(1,2); /*Miercoles 1 de marzo de 2017*/
-//  Fecha f1(11,3); /*Martes 11 de abril de 2017*/
-  Fecha f2(9,5); /*Jueves 9 de junio*/
+  Fecha f1(18,8); /*Lunes 18 de septiembre de 2017*/
+  Fecha f2(15,11); /*Viernes 15 de diciembre de 2017*/
 
   vector<string> vdd;         /*vector de dias*/
-  vdd.push_back("Martes");    /*los dias que hay clase*/
+  vdd.push_back("Lunes");    /*los dias que hay clase*/
   vdd.push_back("Jueves");
   vector<Fecha*> VDF=Cal2017->get_Fechas(&f1,&f2,vdd); /*vector con las Fechas 
                                                          entre f1 y f2 
@@ -81,13 +81,9 @@ int main(int argc, char *argv[]) {
                                                          vdd */
   /*construir un vector de apuntadores a Dias no laborables*/
   vector<Dia*> vdnl;
-  vdnl.push_back(new Dia(new Fecha(20,2)));      /*Lunes 20 de marzo de 2017*/
-  vdnl.push_back(new Dia(new Fecha(3,3)));      /*Lunes 3 de abril de 2017*/
-  vdnl.push_back(new Dia(new Fecha(13,3)));      /*Jueves 13 de abril de 2017*/
-  vdnl.push_back(new Dia(new Fecha(14,3)));       /*Viernes 14 de abril de 2017*/
-  vdnl.push_back(new Dia(new Fecha(15,3)));       /*Sabado 15 de abril de 2017*/
-  vdnl.push_back(new Dia(new Fecha(1,4)));       /*Lunes 1 de mayo de 2017*/
-  vdnl.push_back(new Dia(new Fecha(5,4)));       /*Viernes 1 de mayo de 2017*/
+  vdnl.push_back(new Dia(new Fecha(2,10)));      /*Jueves 2 de noviembre de 2017*/
+  vdnl.push_back(new Dia(new Fecha(20,10)));      /*Lunes 20 de noviembre de 2017*/
+  
   /*Ahora usando el vector de Fechas VDF y el vector de Dias no laborables vdnl,
     construir un vector de Dias laborables (los dias de clase para los que se 
     planificaran actividades) este vector de Dias laborables se obtendra 
@@ -96,93 +92,75 @@ int main(int argc, char *argv[]) {
                                                      /*de clase en el salon de clase*/
   /*Se asigna Tiempo Disponible Total segun el dia de que se trate*/
   for(int i=0;i<VDDC.size();i++){
-    if(ARREGLO_2017[VDDC[i]->f->m][VDDC[i]->f->d%7]=="Martes")
+//    if(ARREGLO_2017[VDDC[i]->f->m][VDDC[i]->f->d%7]=="Martes")
+    if(ARREGLO[VDDC[i]->f->m][VDDC[i]->f->d%7]=="Lunes")
       VDDC[i]->set_TDT(2.0);
-    if(ARREGLO_2017[VDDC[i]->f->m][VDDC[i]->f->d%7]=="Jueves")
+//    if(ARREGLO_2017[VDDC[i]->f->m][VDDC[i]->f->d%7]=="Jueves")
+	if(ARREGLO[VDDC[i]->f->m][VDDC[i]->f->d%7]=="Jueves")
       VDDC[i]->set_TDT(2.0);
   } 
   /*Se necesita crear las actividades/temas a asignar en los 
     dias de clase disponibles. Se usa usa constructor de Actividad 
     pasando el nombre del Tema y la duracion del Tema/Actividad en horas.*/
   vector<Actividad*> VDA;
-  VDA.push_back(new Actividad("I.	TEORIA DE PROBABILIDAD",0.0,0));
+
+  VDA.push_back(new Actividad("I INTRODUCCION",0.0,0));
+  VDA.push_back(new Actividad("I.A Definicion, Origen y Aplicacion de la \
+Investigacion de Operaciones",0.4,5));
+  VDA.push_back(new Actividad("I.B Origen de la Investigacion de Operaciones",0.4,3));
+  VDA.push_back(new Actividad("I.C Aplicacion de la Investigacion de Operaciones",0.4,3));
+  VDA.push_back(new Actividad("I.D Modelos y Metodologia de la Investigacion de Operaciones",0.4,3));
+  VDA.push_back(new Actividad("I.E Metodologia general de la Investigacion de Operaciones",0.4,3));
+
+
+  VDA.push_back(new Actividad("II PROBLEMAS DE PROGRAMACION MATEMATICA",0.0,3));
+  VDA.push_back(new Actividad("II.A Modelos de Programacion Lineal",2.0,3));
+  VDA.push_back(new Actividad("II.B. Planteamiento de Problemas de Programacion Lineal",3.0,1));
   
-  VDA.push_back(new Actividad("RELACION BINARIA",0.5,1));
-  VDA.push_back(new Actividad("FUNCION",1.0,1));
-  VDA.push_back(new Actividad("FUNCIONES CONTINUAS Y FUNCIONES MEDIBLES",1.0,1));
-  
-  VDA.push_back(new Actividad("I.A CONCEPTO BASICO DE PROBABILIDAD",2.0,1));
-  
-  VDA.push_back(new Actividad("ESPACIO MUESTRAL",1.0,1));
-  
-  VDA.push_back(new Actividad("I.B CONCEPTO DE EVENTO",2.0,1));
-  
-  VDA.push_back(new Actividad("SIGMA ALGEBRA",3.0,3));
-  VDA.push_back(new Actividad("MEDIDAS DE PROBABILIDAD",1.0,3));
-  VDA.push_back(new Actividad("ESPACIOS DE PROBABILIDAD",1.0,1));
-  
-  VDA.push_back(new Actividad("I.C COMBINACIONES DE EVENTOS",2.0,2));
-  VDA.push_back(new Actividad("I.D PROBABILIDAD CONDICIONAL",3.5,5));
-  
+////  VDA.push_back(new Actividad("FUNCION DE DISTRIBUCION Y FUNCION DE DENSIDAD DE V. A. DISCRETAS",2.0,0));
+////  VDA.push_back(new Actividad("FUNCION DE DISTRIBUCION Y FUNCION DE DENSIDAD DE V. A. CONTINUAS",2.0,0));
+////  
+////  VDA.push_back(new Actividad("II.C. VALOR ESPERADO DE UNA VARIABLE ALEATORIA",0.5,0));
+////  VDA.push_back(new Actividad("II.D. PROBLEMAS DE VALOR ESPERADO DE LA VARIABLE ALEATORIA CONTINUA",0.5,0));
+////  VDA.push_back(new Actividad("II.E. VARIANZA DE UNA VARIABLE ALEATORIA DISCRETA.",0.5,0));
+////  VDA.push_back(new Actividad("II.F. PROBLEMAS, VARIANZA DE LA VARIABLE ALEATORIA CONTINUA",0.5,0));
+////  
+////  VDA.push_back(new Actividad("SEGUNDO EXAMEN PARCIAL",2.0,0));
+////  VDA.push_back(new Actividad("REVISION DE LA EVALUACION",2.0,0));
+//  
+  VDA.push_back(new Actividad("III SOLUCION DE PROBLEMAS LINEALES",0.0));
+  VDA.push_back(new Actividad("III.A. Metodo grafico para la solucion de problemas de \
+programacion lineal con dos variables de decision",5.0,1));
+  VDA.push_back(new Actividad("III.B. Empleo del paquete de computo QSB",2.0,2));
   VDA.push_back(new Actividad("PRIMER EXAMEN PARCIAL",2.0));
-  VDA.push_back(new Actividad("REVISION DE LA EVALUACION",2.0));
-  
-  VDA.push_back(new Actividad("TEOREMA DE PROBABILIDAD TOTAL/REGLA DE ELIMINACION",1.5,3));
-  VDA.push_back(new Actividad("Dummy 1",0.25));
-  VDA.push_back(new Actividad("Dummy 2",0.25));
-  
-  VDA.push_back(new Actividad("I.E TEOREMA DE BAYES",2.0,4));
-  VDA.push_back(new Actividad("I.F TECNICAS DE CONTEO",2.0,2));
-  VDA.push_back(new Actividad("II.VARIABLES ALEATORIAS",0.0,3));
-  VDA.push_back(new Actividad("II.A.	VARIABLES ALEATORIAS DISCRETAS",4.0,3));
-  VDA.push_back(new Actividad("II.B.	VARIABLES ALEATORIAS CONTINUAS",2.0,0));
-  
-  VDA.push_back(new Actividad("FUNCION DE DISTRIBUCION Y FUNCION DE DENSIDAD DE V. A. DISCRETAS",2.0,0));
-  VDA.push_back(new Actividad("FUNCION DE DISTRIBUCION Y FUNCION DE DENSIDAD DE V. A. CONTINUAS",2.0,0));
-  
-  VDA.push_back(new Actividad("II.C.	VALOR ESPERADO DE UNA VARIABLE ALEATORIA",0.5,0));
-  VDA.push_back(new Actividad("II.D.	PROBLEMAS DE VALOR ESPERADO DE LA VARIABLE ALEATORIA CONTINUA",0.5,0));
-  VDA.push_back(new Actividad("II.E.	VARIANZA DE UNA VARIABLE ALEATORIA DISCRETA.",0.5,0));
-  VDA.push_back(new Actividad("II.F.	PROBLEMAS, VARIANZA DE LA VARIABLE ALEATORIA CONTINUA",0.5,0));
-  
-  VDA.push_back(new Actividad("SEGUNDO EXAMEN PARCIAL",2.0,0));
-  VDA.push_back(new Actividad("REVISION DE LA EVALUACION",2.0,0));
-  
-  VDA.push_back(new Actividad("III DISTRIBUCIONES DISCRETAS",0.0));
-  VDA.push_back(new Actividad("III.A.	DISTRIBUCION DE PROBABILIDAD DE BERNOULLI",2.0));
-  VDA.push_back(new Actividad("III.B.	DISTRIBUCION DE PROBABILIDAD BINOMIAL",2.0));
-  VDA.push_back(new Actividad("III.C.	DISTRIBUCION DE PROBABILIDAD GEOMETRICA",2.0));
-  VDA.push_back(new Actividad("III.D.	DISTRIBUCION DE PROBABILIDAD BINOMIAL NEGATIVA",2.0));
-  VDA.push_back(new Actividad("III.E.	DISTRIBUCION HIPERGEOMETRICA",1.0));
-  VDA.push_back(new Actividad("III.F.	DISTRIBUCION DE POISSON",1.0));
-  VDA.push_back(new Actividad("IV.	DISTRIBUCIONES CONTINUAS",0.0));
-  VDA.push_back(new Actividad("IV.A.	DISTRIBUCION UNIFORME",2.0));
-  VDA.push_back(new Actividad("IV.B.	DISTRIBUCION EXPONENCIAL",2.0));
-  VDA.push_back(new Actividad("V.	DISTRIBUCION NORMAL",0.0));
-  VDA.push_back(new Actividad("V.A.	USO DE LA DISTRIBUCION NORMAL EN EL CALCULO DE PROBABILIDAD",3.0));
-  VDA.push_back(new Actividad("V.B.	DISTRIBUCIONES RELACIONADAS CON LA DISTRIBUCION NORMAL",2.0));
-  
+  VDA.push_back(new Actividad("REVISION DE LA EVALUACION",0.0));
+   
+  VDA.push_back(new Actividad("III.C Metodo Simplex",2.0,1));
+  VDA.push_back(new Actividad("III.D. Solucion de problemas de programacion lineal",2.0,2));
+  VDA.push_back(new Actividad("III.E. Uso de variables artificiales en el metodo simplex",2.0,2));
+  VDA.push_back(new Actividad("III.F. Aplicacion del programa de computo QSB",4.0,2));
+  VDA.push_back(new Actividad("IV. SENSIBILIDAD Y DUALIDAD",0.0));
+  VDA.push_back(new Actividad("IV.A. Problema dual y su relacion con el primal",1.0,TDE::T1_EXPOSICION__Conocera));
+  VDA.push_back(new Actividad("IV.B. Metodo Simplex Dual",1.0,TDE::T1_EXPOSICION__Conocera));
+  VDA.push_back(new Actividad("IV.C Aplicacion del metodo simplex dual",2.0,TDE::T2_EXPOSICION_TEMPRANA_A_PROBLEMAS_DE_INGENIERIA_BUSQUEDAS_BIBLIOGRAFICAS__CONOCERA_EL_LAS));
+  VDA.push_back(new Actividad("IV.D Problema dual de programacion",1.0,TDE::T1_EXPOSICION__Conocera));
+  VDA.push_back(new Actividad("IV.E Analisis de sensibilidad a una solucion dada",2.0,TDE::T4_PRESENTACIONES_DE_DIAPOSITIVAS_Y_RESOLUCION_PROBLEMAS__Resolvera_problemas_de));
   VDA.push_back(new Actividad("SEGUNDO EXAMEN PARCIAL",2.0));
   VDA.push_back(new Actividad("REVISION DE LA EVALUACION",0.0));
-  
-  VDA.push_back(new Actividad("VI. ESTADISTICA DESCRIPTIVA",1.0));
-  VDA.push_back(new Actividad("VI.A.	POBLACION, MUESTRA Y MUESTRA ALEATORIA",2.0));
-  VDA.push_back(new Actividad("VI.B.	PRESENTACION DE DATOS",2.0));
-  VDA.push_back(new Actividad("VI.C.	ESTADISTICOS MUESTRALES",3.0));
-  VDA.push_back(new Actividad("VII. ESTIMACION ESTADISTICA Y DISTRIBUCIONES DE MUESTREO",0.0));
-  VDA.push_back(new Actividad("VII.A.	ESTIMADORES PUNTUALES",1.0));
-  VDA.push_back(new Actividad("VII.B.	PROPIEDADES DE LOS ESTIMADORES PUNTUALES",1.0));
-  VDA.push_back(new Actividad("VII.C.	DISTRIBUCIONES DE MUESTREO",1.0));
-  VDA.push_back(new Actividad("VIII INFERENCIAS EN UNA POBLACION",0.0));
-  VDA.push_back(new Actividad("VIII.A INTERVALOS DE CONFIANZA",1.0));
-  VDA.push_back(new Actividad("VIII.B PRUEBAS DE HIPOTESIS",1.0));
-  VDA.push_back(new Actividad("IX.	INFERENCIAS DE DOS POBLACIONES",0.0));
-  VDA.push_back(new Actividad("IX.A INTRODUCCION",1.0));
-  VDA.push_back(new Actividad("IX.B ANALISIS DE MUESTRAS INDEPENDIENTES",1.0));
-  
+  VDA.push_back(new Actividad("V.A Concepto de redes",1.0,TDE::T1_EXPOSICION__Conocera));
+  VDA.push_back(new Actividad("V.B Problemas por la ruta mas corta",1.0,TDE::T4_PRESENTACIONES_DE_DIAPOSITIVAS_Y_RESOLUCION_PROBLEMAS__Resolvera_problemas_de));
+  VDA.push_back(new Actividad("V.C Problema del arbol de expansion minima",1.0,TDE::T3_INDAGACION_BIBLIOGRAF_MODELOS_MATEMATICOS__Conocera_metodologia_para_o_modelos_matematicos));
+  VDA.push_back(new Actividad("V.D Problemas por flujo maximo",1.0,TDE::T1_EXPOSICION__Conocera));
+  VDA.push_back(new Actividad("V.E Problemas de flujo de costo minimo",1.0));
+  VDA.push_back(new Actividad("V.F Problemas de transbordo",1.0));
+  VDA.push_back(new Actividad("V.G Solucion de problemas de transbordo",1.0));
+  VDA.push_back(new Actividad("V.H Problemas de transporte. Metodos de la esquina \
+no celda de costo minimo y de Voguel",2.0));
+  VDA.push_back(new Actividad("V.I Solucion de problemas de transporte",1.0));
+  VDA.push_back(new Actividad("V.J Problemas de asignacion",1.0));
+  VDA.push_back(new Actividad("V.K Metodo Hungaro",1.0));
   VDA.push_back(new Actividad("TERCER EXAMEN PARCIAL",2.0));
   VDA.push_back(new Actividad("REVISION DE LA EVALUACION",0.0));
-  
   VDA.push_back(new Actividad("EXAMEN FINAL ORDINARIO",2.0));
   VDA.push_back(new Actividad("REVISION DE LA EVALUCION",0.0));
 
@@ -196,11 +174,11 @@ int main(int argc, char *argv[]) {
   //Dia *hoy=new Dia(new Fecha(9,3));/*Domingo 9 de marzo de (anio)*/
   Dia *hoy=new Dia(new Fecha(12,3));/*Miercoles 12 de abril de (anio)*/
   cout<<"                                                   "<<*hoy;
-  cout<<"Planeacion de actividades de unidad de aprendizaje: PROBABILIDAD Y ESTADISTICA"<<endl;
+  cout<<"Planeacion de actividades de unidad de aprendizaje: INVESTIGACION DE OPERACIONES"<<endl;
   cout<<"Los dias a planificar son:"<<endl;
 
   for(int i=0;i<VDDC.size();i++){
-  	cout<<"(SECUENCIA DIDACTICA No. "<<i+1<<") ";
+  	cout<<"(PLAN DE CLASE No. "<<i+1<<") ";
   	cout<<"AVANCE PROGRAMATICO: "<<100*((float)i/VDDC.size())<<"%"<<endl;
     cout<<*VDDC[i]<<endl;
     if((i%1)==0){

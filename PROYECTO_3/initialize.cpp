@@ -8,6 +8,7 @@ using std::string;
 using std::vector;
 using std::ostream;
 #include "Alumno.h"
+#include "dummy.h"
 extern int NUMDALUMNOS; /*cantidad de filas del siguiente arreglo bidimensional*/
                         /*definido en nombresdalumnos.cpp*/
 extern string NombresDA[][2];
@@ -31,3 +32,9 @@ void print_alumnos(vector<Alumno*> vda){
 }
 
 extern string TecDEnsYActDApr[][2];
+int TDE::T0_TEC_ENS_sin_definir__ACT_APR_sin_definir=0;
+int TDE::T1_EXPOSICION__Conocera=1;
+int TDE::T2_EXPOSICION_TEMPRANA_A_PROBLEMAS_DE_INGENIERIA_BUSQUEDAS_BIBLIOGRAFICAS__CONOCERA_EL_LAS=2;
+int TDE::T3_INDAGACION_BIBLIOGRAF_MODELOS_MATEMATICOS__Conocera_metodologia_para_o_modelos_matematicos=3;
+int TDE::T4_PRESENTACIONES_DE_DIAPOSITIVAS_Y_RESOLUCION_PROBLEMAS__Resolvera_problemas_de=4;
+int TDE::T5_EXPOSICION_ACTIVIDADES_DISCENTES_ANALISIS_CASO_PROBLEMA_DE__Resolvera_problemas_de=5;
