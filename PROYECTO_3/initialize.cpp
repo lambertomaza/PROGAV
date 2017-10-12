@@ -32,6 +32,7 @@ void print_alumnos(vector<Alumno*> vda){
 }
 
 extern string TecDEnsYActDApr[][2];
+
 int TDE::T0_TEC_ENS_sin_definir__ACT_APR_sin_definir=0;
 int TDE::T1_EXPOSICION__Conocera=1;
 int TDE::T2_EXPOSICION_TEMPRANA_A_PROBLEMAS_DE_INGENIERIA_BUSQUEDAS_BIBLIOGRAFICAS__CONOCERA_EL_LAS=2;
